@@ -13,29 +13,32 @@
     header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     h1{font-size:clamp(22px,2.4vw,32px);margin:0}
     .search{flex:1 1 260px;min-width:260px}
-    .search input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #232428;background:#141519;color:#e9eaee;outline:none}
+    .search input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #232428;background:#02104f;color:#e9eaee;outline:none}
+    .err{margin-top:12px;color:#ffb4b4;font-size:14px}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--gap);margin-top:18px}
     .card{position:relative;background:var(--panel);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s ease,border-color .12s ease}
     .card:hover{transform:translateY(-2px);border-color:#2a2c33}
     .thumb{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
     .meta{padding:10px 12px 12px}
     .title{font-size:14px;font-weight:600;line-height:1.2}
+    /* Tooltip */
     .card[data-tooltip]::after{
       content:attr(data-tooltip); position:absolute; left:50%; bottom:100%; transform:translate(-50%,-8px);
       opacity:0; pointer-events:none; transition:opacity .12s ease, transform .12s ease;
-      background:#141414e8; color:#fff; padding:8px 10px; border-radius:10px; width:max-content; max-width:280px; text-align:center; font-size:12px; line-height:1.25; box-shadow:0 6px 20px rgba(0,0,0,.35)
+      background:#02104f; color:#fff; padding:8px 10px; border-radius:10px; width:max-content; max-width:280px; text-align:center; font-size:12px; line-height:1.25; box-shadow:0 6px 20px rgba(0,0,0,.35)
     }
     .card:hover::after{opacity:1; transform:translate(-50%,-12px)}
-    dialog{width:min(920px,92vw);border:none;border-radius:16px;padding:0;background:#0f1015;color:#fff}
-    dialog::backdrop{background:#0008; backdrop-filter:blur(2px)}
+    /* Modal */
+    dialog{width:min(920px,92vw);border:none;border-radius:16px;padding:0;background:#02104f;color:#fff}
+    dialog::backdrop{background:#02104f; backdrop-filter:blur(2px)}
     .modal{display:grid;grid-template-columns:1fr 1.15fr}
-    .modal-media{background:#0a0b0f;display:flex;align-items:center;justify-content:center}
+    .modal-media{background:#02104f;display:flex;align-items:center;justify-content:center}
     .modal-media img{max-height:80vh;width:100%;height:100%;object-fit:contain}
     .modal-body{padding:22px}
     .badge-name{margin:0 0 8px;font-weight:800;font-size:clamp(18px,2.2vw,22px)}
     .criteria{white-space:pre-wrap;color:var(--muted);line-height:1.55;font-size:15px}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
-    .close{border:1px solid #2a2c33;background:#12131a;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
+    .close{border:1px solid #2a2c33;background:##02104f;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
     .close:hover{background:#171922}
     @media (max-width:860px){.modal{grid-template-columns:1fr}.modal-media img{max-height:46vh}}
   </style>
@@ -47,6 +50,7 @@
       <div class="search">
         <label class="sr-only" for="q">Search</label>
         <input id="q" type="search" placeholder="Search badges or criteria… (e.g., map, roleplay, teamwork)" aria-label="Search badges" />
+        <div id="err" class="err" role="status" aria-live="polite"></div>
       </div>
     </header>
 
@@ -67,10 +71,11 @@
   </dialog>
 
   <script>
-    const DATA_URL = 'badges.json';
+    const DATA_URL = 'badges.json'; // keep next to index.html
 
     const grid = document.getElementById('grid');
     const q = document.getElementById('q');
+    const err = document.getElementById('err');
     const modal = document.getElementById('modal');
     const mimg = document.getElementById('mimg');
     const mtitle = document.getElementById('modal-title');
@@ -78,12 +83,12 @@
     const mclose = document.getElementById('mclose');
 
     let BADGES = [], CURRENT = [];
-
     const norm = s => (s||'').toLowerCase();
 
     function createCard(b){
       const el = document.createElement('article');
-      el.className='card'; el.tabIndex=0; el.role='listitem'; el.dataset.tooltip=b.tooltip||'';
+      el.className='card'; el.tabIndex=0; el.role='listitem';
+      el.dataset.tooltip = b.tooltip || '';
       const src = b.imageUrl || 'https://via.placeholder.com/512x512?text=Badge';
       el.innerHTML = '<img class="thumb" src="'+src+'" loading="lazy" alt="'+(b.name||'Badge')+'">'+
                      '<div class="meta"><div class="title">'+(b.name||'Badge')+'</div></div>';
@@ -92,23 +97,41 @@
       return el;
     }
 
-    function render(list){ grid.innerHTML=''; const f=document.createDocumentFragment(); list.forEach(b=>f.appendChild(createCard(b))); grid.appendChild(f); }
-    function openModal(b){ mimg.src=b.imageUrl||'https://via.placeholder.com/1024x1024?text=Badge'; mimg.alt=b.name||'Badge'; mtitle.textContent=b.name||'Badge'; mcrit.textContent=b.criteria||''; if(!modal.open) modal.showModal(); }
+    function render(list){
+      grid.innerHTML='';
+      const f=document.createDocumentFragment();
+      list.forEach(b=>f.appendChild(createCard(b)));
+      grid.appendChild(f);
+    }
 
+    function openModal(b){
+      mimg.src=b.imageUrl || 'https://via.placeholder.com/1024x1024?text=Badge';
+      mimg.alt=b.name||'Badge';
+      mtitle.textContent=b.name||'Badge';
+      mcrit.textContent=b.criteria||'';
+      if(!modal.open) modal.showModal();
+    }
+
+    // Modal wiring
     mclose.addEventListener('click',()=>modal.close());
     modal.addEventListener('click',e=>{ if(e.target===modal) modal.close(); });
     document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.open) modal.close(); });
 
+    // Search
     q.addEventListener('input',()=>{
       const term = norm(q.value);
-      CURRENT = term ? BADGES.filter(b=>norm(b.name).includes(term)||norm(b.criteria).includes(term)) : BADGES;
+      CURRENT = term ? BADGES.filter(b=>norm(b.name).includes(term) || norm(b.criteria).includes(term)) : BADGES;
       render(CURRENT);
     });
 
+    // Load JSON and render
     fetch(DATA_URL)
       .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
       .then(data=>{ BADGES = data; CURRENT = data; render(BADGES); })
-      .catch(err=>{ console.error('badges.json failed to load', err); grid.innerHTML = '<p>Could not load badges.</p>'; });
+      .catch(e=>{
+        console.error('badges.json load failed:', e);
+        err.textContent = 'Could not load badges.json ('+e.message+'). Make sure badges.json is in the same folder and valid JSON.';
+      });
   </script>
 </body>
 </html>
