@@ -51,31 +51,126 @@
     .navbtns button{border:1px solid #2a2c33;background:#12131a;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
     .navbtns button:hover{background:#171922}
     @media (max-width:860px){.modal{grid-template-columns:1fr}.modal-media img{max-height:46vh}}
+    /* ===== Editable color tokens (change just these) ===== */
+:root{
+  /* layout */
+  --gap:14px; --r:14px;
+
+  /* palette – tweak these to play with the scheme */
+  --bg:#02104f;              /* page background */
+  --panel:#02104f;           /* card/panel background */
+  --bd:#2a347a;              /* generic borders */
+  --fg:#f2f3f5;              /* main text */
+  --muted:#cdd4ff;           /* secondary text */
+
+  /* controls (inputs, selects, buttons) */
+  --control-bg:#0d155c;
+  --control-bd:#2a347a;
+  --control-fg:#f2f3f5;
+  --control-bg-hover:#111a70;
+  --chip:#0b1247;
+  --chip-bd:#2a347a;
+
+  /* accent/focus */
+  --accent:#7c9eff;
+  --focus:#a3b0ff;
+
+  --shadow:0 4px 14px rgba(0,0,0,.14);
+}
+
+/* ===== layout for the new top bar ===== */
+header{ display:grid; gap:12px; }
+.toolbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:nowrap;
+}
+.search{ flex:1 1 auto; min-width:0; } /* lets the input take the whole row */
+.select{ margin-left:auto; }           /* pushes Sort to the right */
+
+.meta-row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+
+/* ===== inputs & selects use tokens (easy recolor) ===== */
+.search input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--control-bd);
+  background:var(--control-bg);
+  color:var(--control-fg);
+  outline:none;
+}
+.search input:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+.search input:hover{ background:var(--control-bg-hover); }
+
+.select select{
+  border:1px solid var(--control-bd);
+  background:var(--control-bg);
+  color:var(--control-fg);
+  border-radius:12px;
+  padding:10px 12px;
+  outline:none;
+  width:auto;                 /* keep Sort compact on the right */
+  max-width:100%;
+}
+.select select:hover{ background:var(--control-bg-hover); }
+.select select:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+
+/* chips & small UI bits pick up tokens, too */
+.chip{
+  background:var(--chip);
+  border:1px solid var(--chip-bd);
+}
+.chip[aria-pressed="true"]{ outline:2px solid var(--accent); }
+
+/* optional: hover state for cards uses your border token */
+.card{ background:var(--panel); border:1px solid var(--bd); }
+.card:hover{ border-color:color-mix(in oklab, var(--bd), white 18%); }
+
+/* (optional) full-bleed toolbar: uncomment if you want edge-to-edge across viewport
+.wrap .toolbar{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  padding-left:16px; padding-right:16px;
+}
+*/
+
+/* small screens: stack Sort under the search if it gets too tight */
+@media (max-width:520px){
+  .toolbar{ flex-wrap:wrap; }
+  .select{ margin-left:0; }
+}
+
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-        <div class="controls">
-        <div class="search">
-          <label class="sr-only" for="q">Search</label>
-          <input id="q" type="search" placeholder="Search name or type of badge…" aria-label="Search badges" />
-        </div>
-      <div style="text-align:right;">
-        <div class="select">
-          <label for="sort" class="sr-only">Sort</label>
-          <select id="sort" aria-label="Sort">
-            <option value="name-asc">Name ↑</option>
-            <option value="name-desc">Name ↓</option>
-          </select>
-        </div>
-      </div>
-        <div class="counter"><small id="count">0 results</small></div>
-      </div>
-      <div id="chips" class="chips" hidden></div>
-      <div id="err" class="err" role="status" aria-live="polite"></div>
-    </header>
+  <!-- Top toolbar: full-width search + right-aligned sort -->
+  <div class="toolbar" role="search">
+    <div class="search">
+      <label class="sr-only" for="q">Search</label>
+      <input id="q" type="search" placeholder="Search name or type of badge…" aria-label="Search badges" />
+    </div>
 
+    <div class="select">
+      <label for="sort" class="sr-only">Sort</label>
+      <select id="sort" aria-label="Sort">
+        <option value="name-asc">Name ↑</option>
+        <option value="name-desc">Name ↓</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Second row: chips left, result counter right -->
+  <div class="meta-row">
+    <div id="chips" class="chips" hidden></div>
+    <div class="counter"><small id="count">0 results</small></div>
+  </div>
+
+  <div id="err" class="err" role="status" aria-live="polite"></div>
+</header>
     <div id="grid" class="grid" role="list" aria-label="Badge list"></div>
   </div>
 
