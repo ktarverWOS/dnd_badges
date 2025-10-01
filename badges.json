@@ -1,108 +1,758 @@
-<article class="card" data-tooltip="A Little Off the Top"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_001.webp" alt="A Little Off the Top" loading="lazy"><div class="meta"><div class="title">A Little Off the Top</div></div></article>
-<article class="card" data-tooltip="A Pirate&#x27;s Life For Me"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_002.webp" alt="A Pirate&#x27;s Life For Me" loading="lazy"><div class="meta"><div class="title">A Pirate's Life For Me</div></div></article>
-<article class="card" data-tooltip="Against All Odds"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_003.webp" alt="Against All Odds" loading="lazy"><div class="meta"><div class="title">Against All Odds</div></div></article>
-<article class="card" data-tooltip="Ash to Ash"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_004.webp" alt="Ash to Ash" loading="lazy"><div class="meta"><div class="title">Ash to Ash</div></div></article>
-<article class="card" data-tooltip="Background DM"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_005.webp" alt="Background DM" loading="lazy"><div class="meta"><div class="title">Background DM</div></div></article>
-<article class="card" data-tooltip="Badges"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_006.webp" alt="Badges" loading="lazy"><div class="meta"><div class="title">Badges</div></div></article>
-<article class="card" data-tooltip="Best of the Best of the Best, Sir!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_007.webp" alt="Best of the Best of the Best, Sir!" loading="lazy"><div class="meta"><div class="title">Best of the Best of the Best, Sir!</div></div></article>
-<article class="card" data-tooltip="Blame It All On My Roots"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_008.webp" alt="Blame It All On My Roots" loading="lazy"><div class="meta"><div class="title">Blame It All On My Roots</div></div></article>
-<article class="card" data-tooltip="Broke the Plot"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_009.webp" alt="Broke the Plot" loading="lazy"><div class="meta"><div class="title">Broke the Plot</div></div></article>
-<article class="card" data-tooltip="Captain Planet"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_010.webp" alt="Captain Planet" loading="lazy"><div class="meta"><div class="title">Captain Planet</div></div></article>
-<article class="card" data-tooltip="Cash Is King"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_011.webp" alt="Cash Is King" loading="lazy"><div class="meta"><div class="title">Cash Is King</div></div></article>
-<article class="card" data-tooltip="Classic Encounter Level I"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_012.webp" alt="Classic Encounter Level I" loading="lazy"><div class="meta"><div class="title">Classic Encounter Level I</div></div></article>
-<article class="card" data-tooltip="Classic Encounter Level II"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_013.webp" alt="Classic Encounter Level II" loading="lazy"><div class="meta"><div class="title">Classic Encounter Level II</div></div></article>
-<article class="card" data-tooltip="Classic Encounter Level III"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_014.webp" alt="Classic Encounter Level III" loading="lazy"><div class="meta"><div class="title">Classic Encounter Level III</div></div></article>
-<article class="card" data-tooltip="Classic Encounter Level IV"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_015.webp" alt="Classic Encounter Level IV" loading="lazy"><div class="meta"><div class="title">Classic Encounter Level IV</div></div></article>
-<article class="card" data-tooltip="Cleaved in Twain"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_016.webp" alt="Cleaved in Twain" loading="lazy"><div class="meta"><div class="title">Cleaved in Twain</div></div></article>
-<article class="card" data-tooltip="Conspiracy Theorist"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_017.webp" alt="Conspiracy Theorist" loading="lazy"><div class="meta"><div class="title">Conspiracy Theorist</div></div></article>
-<article class="card" data-tooltip="Crafting I"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_018.webp" alt="Crafting I" loading="lazy"><div class="meta"><div class="title">Crafting I</div></div></article>
-<article class="card" data-tooltip="Crafting II"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_019.webp" alt="Crafting II" loading="lazy"><div class="meta"><div class="title">Crafting II</div></div></article>
-<article class="card" data-tooltip="Crafting III"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_020.webp" alt="Crafting III" loading="lazy"><div class="meta"><div class="title">Crafting III</div></div></article>
-<article class="card" data-tooltip="Crafting IV"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_021.webp" alt="Crafting IV" loading="lazy"><div class="meta"><div class="title">Crafting IV</div></div></article>
-<article class="card" data-tooltip="Crafting V"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_022.webp" alt="Crafting V" loading="lazy"><div class="meta"><div class="title">Crafting V</div></div></article>
-<article class="card" data-tooltip="Crafting VI"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_023.webp" alt="Crafting VI" loading="lazy"><div class="meta"><div class="title">Crafting VI</div></div></article>
-<article class="card" data-tooltip="Crafting VII"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_024.webp" alt="Crafting VII" loading="lazy"><div class="meta"><div class="title">Crafting VII</div></div></article>
-<article class="card" data-tooltip="Curses!!!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_025.webp" alt="Curses!!!" loading="lazy"><div class="meta"><div class="title">Curses!!!</div></div></article>
-<article class="card" data-tooltip="Debt Collector"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_026.webp" alt="Debt Collector" loading="lazy"><div class="meta"><div class="title">Debt Collector</div></div></article>
-<article class="card" data-tooltip="Double Dragon"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_027.webp" alt="Double Dragon" loading="lazy"><div class="meta"><div class="title">Double Dragon</div></div></article>
-<article class="card" data-tooltip="Down You Go!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_028.webp" alt="Down You Go!" loading="lazy"><div class="meta"><div class="title">Down You Go!</div></div></article>
-<article class="card" data-tooltip="Dragon in a Dungeon"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_029.webp" alt="Dragon in a Dungeon" loading="lazy"><div class="meta"><div class="title">Dragon in a Dungeon</div></div></article>
-<article class="card" data-tooltip="Dropped A Bomb"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_030.webp" alt="Dropped A Bomb" loading="lazy"><div class="meta"><div class="title">Dropped A Bomb</div></div></article>
-<article class="card" data-tooltip="Dust to Dust"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_031.webp" alt="Dust to Dust" loading="lazy"><div class="meta"><div class="title">Dust to Dust</div></div></article>
-<article class="card" data-tooltip="Evolution"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_032.webp" alt="Evolution" loading="lazy"><div class="meta"><div class="title">Evolution</div></div></article>
-<article class="card" data-tooltip="Form Over Function"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_033.webp" alt="Form Over Function" loading="lazy"><div class="meta"><div class="title">Form Over Function</div></div></article>
-<article class="card" data-tooltip="Frailty Thy Name Is..."><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_034.webp" alt="Frailty They Name Is..." loading="lazy"><div class="meta"><div class="title">Frailty They Name Is...</div></div></article>
-<article class="card" data-tooltip="Frankenstein&#x27;s Monster"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_035.webp" alt="Frankenstein&#x27;s Monster" loading="lazy"><div class="meta"><div class="title">Frankenstein's Monster</div></div></article>
-<article class="card" data-tooltip="Fumble Bee"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_036.webp" alt="Fumble Bee" loading="lazy"><div class="meta"><div class="title">Fumble Bee</div></div></article>
-<article class="card" data-tooltip="Fun While It Lasted"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_037.webp" alt="Fun While It Lasted" loading="lazy"><div class="meta"><div class="title">Fun While It Lasted</div></div></article>
-<article class="card" data-tooltip="Game Master"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_038.webp" alt="Game Master" loading="lazy"><div class="meta"><div class="title">Game Master</div></div></article>
-<article class="card" data-tooltip="Gaslight"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_039.webp" alt="Gaslight" loading="lazy"><div class="meta"><div class="title">Gaslight</div></div></article>
-<article class="card" data-tooltip="Guess I&#x27;ll Just Die"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_040.webp" alt="Guess I&#x27;ll Just Die" loading="lazy"><div class="meta"><div class="title">Guess I'll Just Die</div></div></article>
-<article class="card" data-tooltip="Han Shot First"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_041.webp" alt="Han Shot First" loading="lazy"><div class="meta"><div class="title">Han Shot First</div></div></article>
-<article class="card" data-tooltip="Here Comes the Comet"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_042.webp" alt="Here Comes the Comet" loading="lazy"><div class="meta"><div class="title">Here Comes the Comet</div></div></article>
-<article class="card" data-tooltip="Here Lassie, Here Girl"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_043.webp" alt="Here Lassie, Here Girl" loading="lazy"><div class="meta"><div class="title">Here Lassie, Here Girl</div></div></article>
-<article class="card" data-tooltip="How the Turns Have Tabled"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_044.webp" alt="How the Turns Have Tabled" loading="lazy"><div class="meta"><div class="title">How the Turns Have Tabled</div></div></article>
-<article class="card" data-tooltip="HULK SMASH!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_045.webp" alt="HULK SMASH!" loading="lazy"><div class="meta"><div class="title">HULK SMASH!</div></div></article>
-<article class="card" data-tooltip="I Am Become Death"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_046.webp" alt="I Am Become Death" loading="lazy"><div class="meta"><div class="title">I Am Become Death</div></div></article>
-<article class="card" data-tooltip="I Am The One Who Knocks"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_047.webp" alt="I Am The One Who Knocks" loading="lazy"><div class="meta"><div class="title">I Am The One Who Knocks</div></div></article>
-<article class="card" data-tooltip="I Can Do This All Day"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_048.webp" alt="I Can Do This All Day" loading="lazy"><div class="meta"><div class="title">I Can Do This All Day</div></div></article>
-<article class="card" data-tooltip="I CAST CONFUSION!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_049.webp" alt="I CAST CONFUSION!" loading="lazy"><div class="meta"><div class="title">I CAST CONFUSION!</div></div></article>
-<article class="card" data-tooltip="I Cast Fireball"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_050.webp" alt="I Cast Fireball" loading="lazy"><div class="meta"><div class="title">I Cast Fireball</div></div></article>
-<article class="card" data-tooltip="I Didn&#x27;t Hear No Bell"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_051.webp" alt="I Didn&#x27;t Hear No Bell" loading="lazy"><div class="meta"><div class="title">I Didn't Hear No Bell</div></div></article>
-<article class="card" data-tooltip="I Get Knocked Down"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_052.webp" alt="I Get Knocked Down" loading="lazy"><div class="meta"><div class="title">I Get Knocked Down</div></div></article>
-<article class="card" data-tooltip="I Tried My Best"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_053.webp" alt="I Tried My Best" loading="lazy"><div class="meta"><div class="title">I Tried My Best</div></div></article>
-<article class="card" data-tooltip="I Understood That Reference"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_054.webp" alt="I Understood That Reference" loading="lazy"><div class="meta"><div class="title">I Understood That Reference</div></div></article>
-<article class="card" data-tooltip="I Want to Believe"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_055.webp" alt="I Want to Believe" loading="lazy"><div class="meta"><div class="title">I Want to Believe</div></div></article>
-<article class="card" data-tooltip="I&#x27;M THE JUGGERNAUT..."><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_056.webp" alt="I&#x27;M THE JUGGERNAUT..." loading="lazy"><div class="meta"><div class="title">I'M THE JUGGERNAUT...</div></div></article>
-<article class="card" data-tooltip="If I Could Turn Back Time"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_057.webp" alt="If I Could Turn Back Time" loading="lazy"><div class="meta"><div class="title">If I Could Turn Back Time</div></div></article>
-<article class="card" data-tooltip="IGHT...IMMA HEAD OUT"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_058.webp" alt="IGHT...IMMA HEAD OUT" loading="lazy"><div class="meta"><div class="title">IGHT...IMMA HEAD OUT</div></div></article>
-<article class="card" data-tooltip="Is That a Zoot Suit?"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_059.webp" alt="Is That a Zoot Suit?" loading="lazy"><div class="meta"><div class="title">Is That a Zoot Suit?</div></div></article>
-<article class="card" data-tooltip="IYKYK"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_060.webp" alt="IYKYK" loading="lazy"><div class="meta"><div class="title">IYKYK</div></div></article>
-<article class="card" data-tooltip="Just a Flesh Wound"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_061.webp" alt="Just a Flesh Wound" loading="lazy"><div class="meta"><div class="title">Just a Flesh Wound</div></div></article>
-<article class="card" data-tooltip="Knock, Knock"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_062.webp" alt="Knock, Knock" loading="lazy"><div class="meta"><div class="title">Knock, Knock</div></div></article>
-<article class="card" data-tooltip="Level up! - 5"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_063.webp" alt="Level up! - 5" loading="lazy"><div class="meta"><div class="title">Level up! - 5</div></div></article>
-<article class="card" data-tooltip="Level up! - 10"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_064.webp" alt="Level up! - 10" loading="lazy"><div class="meta"><div class="title">Level up! - 10</div></div></article>
-<article class="card" data-tooltip="Level up! - 15"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_065.webp" alt="Level up! - 15" loading="lazy"><div class="meta"><div class="title">Level up! - 15</div></div></article>
-<article class="card" data-tooltip="Level up! - 20"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_066.webp" alt="Level up! - 20" loading="lazy"><div class="meta"><div class="title">Level up! - 20</div></div></article>
-<article class="card" data-tooltip="Minded My Own Business"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_067.webp" alt="Minded My Own Business" loading="lazy"><div class="meta"><div class="title">Minded My Own Business</div></div></article>
-<article class="card" data-tooltip="Nailed It"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_068.webp" alt="Nailed It" loading="lazy"><div class="meta"><div class="title">Nailed It</div></div></article>
-<article class="card" data-tooltip="Nope!"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_069.webp" alt="Nope!" loading="lazy"><div class="meta"><div class="title">Nope!</div></div></article>
-<article class="card" data-tooltip="Not Even My Final Form"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_070.webp" alt="Not Even My Final Form" loading="lazy"><div class="meta"><div class="title">Not Even My Final Form</div></div></article>
-<article class="card" data-tooltip="Off the Rails"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_071.webp" alt="Off the Rails" loading="lazy"><div class="meta"><div class="title">Off the Rails</div></div></article>
-<article class="card" data-tooltip="Oh, Snap"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_072.webp" alt="Oh, Snap" loading="lazy"><div class="meta"><div class="title">Oh, Snap</div></div></article>
-<article class="card" data-tooltip="Oops, I Did It Again"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_073.webp" alt="Oops, I Did It Again" loading="lazy"><div class="meta"><div class="title">Oops, I Did It Again</div></div></article>
-<article class="card" data-tooltip="Participation Trophy"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_074.webp" alt="Participation Trophy" loading="lazy"><div class="meta"><div class="title">Participation Trophy</div></div></article>
-<article class="card" data-tooltip="Pay Attention"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_075.webp" alt="Pay Attention" loading="lazy"><div class="meta"><div class="title">Pay Attention</div></div></article>
-<article class="card" data-tooltip="Pettigrew&#x27;s Path"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_076.webp" alt="Pettigrew&#x27;s Path" loading="lazy"><div class="meta"><div class="title">Pettigrew's Path</div></div></article>
-<article class="card" data-tooltip="Professional Cat Herder"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_077.webp" alt="Professional Cat Herder" loading="lazy"><div class="meta"><div class="title">Professional Cat Herder</div></div></article>
-<article class="card" data-tooltip="Pupper Master"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_078.webp" alt="Pupper Master" loading="lazy"><div class="meta"><div class="title">Pupper Master</div></div></article>
-<article class="card" data-tooltip="Red Shirt"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_079.webp" alt="Red Shirt" loading="lazy"><div class="meta"><div class="title">Red Shirt</div></div></article>
-<article class="card" data-tooltip="Retconned"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_080.webp" alt="Retconned" loading="lazy"><div class="meta"><div class="title">Retconned</div></div></article>
-<article class="card" data-tooltip="Royal Rumble"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_081.webp" alt="Royal Rumble" loading="lazy"><div class="meta"><div class="title">Royal Rumble</div></div></article>
-<article class="card" data-tooltip="Rule of Cool"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_082.webp" alt="Rule of Cool" loading="lazy"><div class="meta"><div class="title">Rule of Cool</div></div></article>
-<article class="card" data-tooltip="Servant of the Scythe"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_083.webp" alt="Servant of the Scythe" loading="lazy"><div class="meta"><div class="title">Servant of the Scythe</div></div></article>
-<article class="card" data-tooltip="Shall We Play A Game"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_084.webp" alt="Shall We Play A Game" loading="lazy"><div class="meta"><div class="title">Shall We Play A Game</div></div></article>
-<article class="card" data-tooltip="Shield Slinging Savant"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_085.webp" alt="Shield Slinging Savant" loading="lazy"><div class="meta"><div class="title">Shield Slinging Savant</div></div></article>
-<article class="card" data-tooltip="Shyamalan-ed"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_086.webp" alt="Shyamalan-ed" loading="lazy"><div class="meta"><div class="title">Shyamalan-ed</div></div></article>
-<article class="card" data-tooltip="So, When&#x27;s the Next One"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_087.webp" alt="So, When&#x27;s the Next One" loading="lazy"><div class="meta"><div class="title">So, When's the Next One</div></div></article>
-<article class="card" data-tooltip="Stay a While, And Listen"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_088.webp" alt="Stay a While, And Listen" loading="lazy"><div class="meta"><div class="title">Stay a While, And Listen</div></div></article>
-<article class="card" data-tooltip="Sycophantic Sovereign"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_089.webp" alt="Sycophantic Sovereign" loading="lazy"><div class="meta"><div class="title">Sycophantic Sovereign</div></div></article>
-<article class="card" data-tooltip="That Was Quick"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_090.webp" alt="That Was Quick" loading="lazy"><div class="meta"><div class="title">That Was Quick</div></div></article>
-<article class="card" data-tooltip="The Gazebo Awakens"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_091.webp" alt="The Gazebo Awakens" loading="lazy"><div class="meta"><div class="title">The Gazebo Awakens</div></div></article>
-<article class="card" data-tooltip="The Guild of Thesseus"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_092.webp" alt="The Guild of Thesseus" loading="lazy"><div class="meta"><div class="title">The Guild of Thesseus</div></div></article>
-<article class="card" data-tooltip="The Monkey&#x27;s Paw"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_093.webp" alt="The Monkey&#x27;s Paw" loading="lazy"><div class="meta"><div class="title">The Monkey's Paw</div></div></article>
-<article class="card" data-tooltip="The Unwitting Prophet"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_094.webp" alt="The Unwitting Prophet" loading="lazy"><div class="meta"><div class="title">The Unwitting Prophet</div></div></article>
-<article class="card" data-tooltip="Timid Tactics"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_095.webp" alt="Timid Tactics" loading="lazy"><div class="meta"><div class="title">Timid Tactics</div></div></article>
-<article class="card" data-tooltip="Tomb Raider"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_096.webp" alt="Tomb Raider" loading="lazy"><div class="meta"><div class="title">Tomb Raider</div></div></article>
-<article class="card" data-tooltip="Too Fast, Too Furious"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_097.webp" alt="Too Fast, Too Furious" loading="lazy"><div class="meta"><div class="title">Too Fast, Too Furious</div></div></article>
-<article class="card" data-tooltip="Training Wheels"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_098.webp" alt="Training Wheels" loading="lazy"><div class="meta"><div class="title">Training Wheels</div></div></article>
-<article class="card" data-tooltip="Wait a Minute"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_099.webp" alt="Wait a Minute" loading="lazy"><div class="meta"><div class="title">Wait a Minute</div></div></article>
-<article class="card" data-tooltip="Wall Hacks"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_100.webp" alt="Wall Hacks" loading="lazy"><div class="meta"><div class="title">Wall Hacks</div></div></article>
-<article class="card" data-tooltip="Warp Whistle"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_101.webp" alt="Warp Whistle" loading="lazy"><div class="meta"><div class="title">Warp Whistle</div></div></article>
-<article class="card" data-tooltip="Weekend At Bernie&#x27;s"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_102.webp" alt="Weekend At Bernie&#x27;s" loading="lazy"><div class="meta"><div class="title">Weekend At Bernie's</div></div></article>
-<article class="card" data-tooltip="Wha...How?"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_103.webp" alt="Wha...How?" loading="lazy"><div class="meta"><div class="title">Wha...How?</div></div></article>
-<article class="card" data-tooltip="Whoops, My Bad"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_104.webp" alt="Whoops, My Bad" loading="lazy"><div class="meta"><div class="title">Whoops, My Bad</div></div></article>
-<article class="card" data-tooltip="Why So Serious"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_105.webp" alt="Why So Serious" loading="lazy"><div class="meta"><div class="title">Why So Serious</div></div></article>
-<article class="card" data-tooltip="Yes and..."><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_106.webp" alt="Yes and..." loading="lazy"><div class="meta"><div class="title">Yes and...</div></div></article>
-<article class="card" data-tooltip="You Have Chosen...Poorly"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_107.webp" alt="You Have Chosen...Poorly" loading="lazy"><div class="meta"><div class="title">You Have Chosen...Poorly</div></div></article>
-<article class="card" data-tooltip="You Shall Not Pass"><img class="thumb" src="https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_108.webp" alt="You Shall Not Pass" loading="lazy"><div class="meta"><div class="title">You Shall Not Pass</div></div></article>
+[
+  {
+    "id": "1",
+    "name": "A Little Off the Top",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_001.webp",
+    "tooltip": "A Little Off the Top",
+    "criteria": "Unexpectedly decapitate someone or something."
+  },
+  {
+    "id": "2",
+    "name": "A Pirate's Life For Me",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_002.webp",
+    "tooltip": "A Pirate's Life For Me",
+    "criteria": "Successfully steal a plot or adventure hook from a movie, book, or video game without getting caught."
+  },
+  {
+    "id": "3",
+    "name": "Against All Odds",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_003.webp",
+    "tooltip": "Against All Odds",
+    "criteria": "Critical success when it mattered most."
+  },
+  {
+    "id": "4",
+    "name": "Ash to Ash",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_004.webp",
+    "tooltip": "Ash to Ash",
+    "criteria": "Comitted Arson."
+  },
+  {
+    "id": "5",
+    "name": "Background DM",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_005.webp",
+    "tooltip": "Background DM",
+    "criteria": "As the DM, you haven't said a word for 10 minutes while your players are engaged and roleplaying a scene."
+  },
+  {
+    "id": "6",
+    "name": "Badges",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_006.webp",
+    "tooltip": "Badges",
+    "criteria": "Earn no other badges for the entire year."
+  },
+  {
+    "id": "7",
+    "name": "Best of the Best of the Best, Sir!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_007.webp",
+    "tooltip": "Best of the Best of the Best, Sir!",
+    "criteria": "Get a 30 or higher on any ability check, attack roll, or saving throw."
+  },
+  {
+    "id": "8",
+    "name": "Blame It All On My Roots",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_008.webp",
+    "tooltip": "Blame It All On My Roots",
+    "criteria": "Player roleplays in character and it affects them negatively."
+  },
+  {
+    "id": "9",
+    "name": "Broke the Plot",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_009.webp",
+    "tooltip": "Broke the Plot",
+    "criteria": "Broke the Plot in some way -- Up to DM discretion."
+  },
+  {
+    "id": "10",
+    "name": "Captain Planet",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_010.webp",
+    "tooltip": "Captain Planet",
+    "criteria": "Take damage from 5 different damage types in a single session."
+  },
+  {
+    "id": "11",
+    "name": "Cash Is King",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_011.webp",
+    "tooltip": "Cash Is King",
+    "criteria": "Bribed your way out of a sticky situation."
+  },
+  {
+    "id": "12",
+    "name": "Classic Encounter Level I",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_012.webp",
+    "tooltip": "Classic Encounter Level I",
+    "criteria": "Defeat a gelatinous cube."
+  },
+  {
+    "id": "13",
+    "name": "Classic Encounter Level II",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_013.webp",
+    "tooltip": "Classic Encounter Level II",
+    "criteria": "Defeat a mind flayer."
+  },
+  {
+    "id": "14",
+    "name": "Classic Encounter Level III",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_014.webp",
+    "tooltip": "Classic Encounter Level III",
+    "criteria": "Defeat a beholder."
+  },
+  {
+    "id": "15",
+    "name": "Classic Encounter Level IV",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_015.webp",
+    "tooltip": "Classic Encounter Level IV",
+    "criteria": "Defeat an Ancient Red Dragon."
+  },
+  {
+    "id": "16",
+    "name": "Cleaved in Twain",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_016.webp",
+    "tooltip": "Cleaved in Twain",
+    "criteria": "Cut someone in half."
+  },
+  {
+    "id": "17",
+    "name": "Conspiracy Theorist",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_017.webp",
+    "tooltip": "Conspiracy Theorist",
+    "criteria": "Believed in something that is obviously untrue."
+  },
+  {
+    "id": "18",
+    "name": "Crafting I",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_018.webp",
+    "tooltip": "Crafting I",
+    "criteria": "Spellcraft -- Make spell cards."
+  },
+  {
+    "id": "19",
+    "name": "Crafting II",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_019.webp",
+    "tooltip": "Crafting II",
+    "criteria": "Artistry -- Create a custom character portrait."
+  },
+  {
+    "id": "20",
+    "name": "Crafting III",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_020.webp",
+    "tooltip": "Crafting III",
+    "criteria": "Engineering -- Create custom tokens."
+  },
+  {
+    "id": "21",
+    "name": "Crafting IV",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_021.webp",
+    "tooltip": "Crafting IV",
+    "criteria": "Terraforming -- Build some terrain."
+  },
+  {
+    "id": "22",
+    "name": "Crafting V",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_022.webp",
+    "tooltip": "Crafting V",
+    "criteria": "Mining -- Paint and design some miniature bases."
+  },
+  {
+    "id": "23",
+    "name": "Crafting VI",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_023.webp",
+    "tooltip": "Crafting VI",
+    "criteria": "Tailoring -- Make a custom dice bag."
+  },
+  {
+    "id": "24",
+    "name": "Crafting VII",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_024.webp",
+    "tooltip": "Crafting VII",
+    "criteria": "Alchemy -- Paint a minature."
+  },
+  {
+    "id": "25",
+    "name": "Curses!!!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_025.webp",
+    "tooltip": "Curses!!!",
+    "criteria": "Convince a player to attune to a cursed item."
+  },
+  {
+    "id": "26",
+    "name": "Debt Collector",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_026.webp",
+    "tooltip": "Debt Collector",
+    "criteria": "Use violence to collect a debt."
+  },
+  {
+    "id": "27",
+    "name": "Double Dragon",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_027.webp",
+    "tooltip": "Double Dragon",
+    "criteria": "With disadvatage, roll two natural 20s."
+  },
+  {
+    "id": "28",
+    "name": "Down You Go!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_028.webp",
+    "tooltip": "Down You Go!",
+    "criteria": "Got the Final Blow on a Boss."
+  },
+  {
+    "id": "29",
+    "name": "Dragon in a Dungeon",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_029.webp",
+    "tooltip": "Dragon in a Dungeon",
+    "criteria": "As a DM, have your players fight a Dragon in a Dungeon."
+  },
+  {
+    "id": "30",
+    "name": "Dropped A Bomb",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_030.webp",
+    "tooltip": "Dropped A Bomb",
+    "criteria": "Deal 50 or more damage to five or more enemies with a single attack"
+  },
+  {
+    "id": "31",
+    "name": "Dust to Dust",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_031.webp",
+    "tooltip": "Dust to Dust",
+    "criteria": "Disintegrate something."
+  },
+  {
+    "id": "32",
+    "name": "Evolution",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_032.webp",
+    "tooltip": "Evolution",
+    "criteria": "Solve a problem in a way that impresses your DM."
+  },
+  {
+    "id": "33",
+    "name": "Form Over Function",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_033.webp",
+    "tooltip": "Form Over Function",
+    "criteria": "Choose to wear armor that looks ridiculous but is quite useful."
+  },
+  {
+    "id": "34",
+    "name": "Frailty They Name Is...",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_034.webp",
+    "tooltip": "Frailty Thy Name Is...",
+    "criteria": "Experience a Total Party Kill."
+  },
+  {
+    "id": "35",
+    "name": "Frankenstein's Monster",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_035.webp",
+    "tooltip": "Frankenstein's Monster",
+    "criteria": "Engage in necromancy."
+  },
+  {
+    "id": "36",
+    "name": "Fumble Bee",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_036.webp",
+    "tooltip": "Fumble Bee",
+    "criteria": "Fail every roll for an entire session."
+  },
+  {
+    "id": "37",
+    "name": "Fun While It Lasted",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_037.webp",
+    "tooltip": "Fun While It Lasted",
+    "criteria": "Retire from adventuring."
+  },
+  {
+    "id": "38",
+    "name": "Game Master",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_038.webp",
+    "tooltip": "Game Master",
+    "criteria": "Run ten sessions as the Game Master (DM)."
+  },
+  {
+    "id": "39",
+    "name": "Gaslight",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_039.webp",
+    "tooltip": "Gaslight",
+    "criteria": "Successfully gaslight your players."
+  },
+  {
+    "id": "40",
+    "name": "Guess I'll Just Die",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_040.webp",
+    "tooltip": "Guess I'll Just Die",
+    "criteria": "Critical failture when it mattered most."
+  },
+  {
+    "id": "41",
+    "name": "Han Shot First",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_041.webp",
+    "tooltip": "Han Shot First",
+    "criteria": "Attack an enemy while they are in mid-sentence."
+  },
+  {
+    "id": "42",
+    "name": "Here Comes the Comet",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_042.webp",
+    "tooltip": "Here Comes the Comet",
+    "criteria": "Join a cult."
+  },
+  {
+    "id": "43",
+    "name": "Here Lassie, Here Girl",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_043.webp",
+    "tooltip": "Here Lassie, Here Girl",
+    "criteria": "Kill a believed party pet. Doesn't have to be an animal."
+  },
+  {
+    "id": "44",
+    "name": "How the Turns Have Tabled",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_044.webp",
+    "tooltip": "How the Turns Have Tabled",
+    "criteria": "As a DM, have a guard charm a player and convince them to cover his shift."
+  },
+  {
+    "id": "45",
+    "name": "HULK SMASH!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_045.webp",
+    "tooltip": "HULK SMASH!",
+    "criteria": "Roll Max damage on all damage dice in an attack."
+  },
+  {
+    "id": "46",
+    "name": "I Am Become Death",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_046.webp",
+    "tooltip": "I Am Become Death",
+    "criteria": "Kill a player character twice in a single session."
+  },
+  {
+    "id": "47",
+    "name": "I Am The One Who Knocks",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_047.webp",
+    "tooltip": "I Am The One Who Knocks",
+    "criteria": "Kill a beloved NPC."
+  },
+  {
+    "id": "48",
+    "name": "I Can Do This All Day",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_048.webp",
+    "tooltip": "I Can Do This All Day",
+    "criteria": "Succeed on five death saves in a single encounter."
+  },
+  {
+    "id": "49",
+    "name": "I CAST CONFUSION!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_049.webp",
+    "tooltip": "I CAST CONFUSION!",
+    "criteria": "As a DM, Have players spend an entire session on a puzzle that should have taken 5 minutes."
+  },
+  {
+    "id": "50",
+    "name": "I Cast Fireball",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_050.webp",
+    "tooltip": "I Cast Fireball",
+    "criteria": "Hit your entire party, including yourself, with a damaging Area of Effect (AoE) spell."
+  },
+  {
+    "id": "51",
+    "name": "I Didn't Hear No Bell",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_051.webp",
+    "tooltip": "I Didn't Hear No Bell",
+    "criteria": "Take 50 damage from a single attack."
+  },
+  {
+    "id": "52",
+    "name": "I Get Knocked Down",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_052.webp",
+    "tooltip": "I Get Knocked Down",
+    "criteria": "Character was stabalized after two failed death saves."
+  },
+  {
+    "id": "53",
+    "name": "I Tried My Best",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_053.webp",
+    "tooltip": "I Tried My Best",
+    "criteria": "Tried your best but still failed. -- DM Discretion."
+  },
+  {
+    "id": "54",
+    "name": "I Understood That Reference",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_054.webp",
+    "tooltip": "I Understood That Reference",
+    "criteria": "Get one of Tarver's dumb references and compliment him on his dumb references."
+  },
+  {
+    "id": "55",
+    "name": "I Want to Believe",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_055.webp",
+    "tooltip": "I Want to Believe",
+    "criteria": "Discover or witness a cryptid."
+  },
+  {
+    "id": "56",
+    "name": "I'M THE JUGGERNAUT...",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_056.webp",
+    "tooltip": "I'M THE JUGGERNAUT...",
+    "criteria": "Enter a room or building through the wall."
+  },
+  {
+    "id": "57",
+    "name": "If I Could Turn Back Time",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_057.webp",
+    "tooltip": "If I Could Turn Back Time",
+    "criteria": "Travel through time."
+  },
+  {
+    "id": "58",
+    "name": "IGHT...IMMA HEAD OUT",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_058.webp",
+    "tooltip": "IGHT...IMMA HEAD OUT",
+    "criteria": "Run away and leave a party member for dead."
+  },
+  {
+    "id": "59",
+    "name": "Is That a Zoot Suit?",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_059.webp",
+    "tooltip": "Is That a Zoot Suit?",
+    "criteria": "Start a riot."
+  },
+  {
+    "id": "60",
+    "name": "IYKYK",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_060.webp",
+    "tooltip": "IYKYK",
+    "criteria": "Get the joke -- DM Discretion."
+  },
+  {
+    "id": "61",
+    "name": "Just a Flesh Wound",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_061.webp",
+    "tooltip": "Just a Flesh Wound",
+    "criteria": "Lose a limb."
+  },
+  {
+    "id": "62",
+    "name": "Knock, Knock",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_062.webp",
+    "tooltip": "Knock, Knock",
+    "criteria": "Open a door by breaking it down."
+  },
+  {
+    "id": "63",
+    "name": "Level up! - 5",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_063.webp",
+    "tooltip": "Level up! - 5",
+    "criteria": "Reach level 5."
+  },
+  {
+    "id": "64",
+    "name": "Level up! - 10",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_064.webp",
+    "tooltip": "Level up! - 10",
+    "criteria": "Reach level 10."
+  },
+  {
+    "id": "65",
+    "name": "Level up! - 15",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_065.webp",
+    "tooltip": "Level up! - 15",
+    "criteria": "Reach level 15."
+  },
+  {
+    "id": "66",
+    "name": "Level up! - 20",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_066.webp",
+    "tooltip": "Level up! - 20",
+    "criteria": "Reach level 20."
+  },
+  {
+    "id": "67",
+    "name": "Minded My Own Business",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_067.webp",
+    "tooltip": "Minded My Own Business",
+    "criteria": "Stayed out of a confrontation when you definitely should have intervened."
+  },
+  {
+    "id": "68",
+    "name": "Nailed It",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_068.webp",
+    "tooltip": "Nailed It",
+    "criteria": "Get a 0 or lower on any ability check, attack roll, or saving throw"
+  },
+  {
+    "id": "69",
+    "name": "Nope!",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_069.webp",
+    "tooltip": "Nope!",
+    "criteria": "Use a counterspell at a critical, life-saving moment."
+  },
+  {
+    "id": "70",
+    "name": "Not Even My Final Form",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_070.webp",
+    "tooltip": "Not Even My Final Form",
+    "criteria": "Succeed every roll for an entire session."
+  },
+  {
+    "id": "71",
+    "name": "Off the Rails",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_071.webp",
+    "tooltip": "Off the Rails",
+    "criteria": "Completely derail an entire session due to random shenanigans -- DM Discretion."
+  },
+  {
+    "id": "72",
+    "name": "Oh, Snap",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_072.webp",
+    "tooltip": "Oh, Snap",
+    "criteria": "As a DM, Have a player one-shot an important NPC."
+  },
+  {
+    "id": "73",
+    "name": "Oops, I Did It Again",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_073.webp",
+    "tooltip": "Oops, I Did It Again",
+    "criteria": "Accidentally kill someone you needed information from."
+  },
+  {
+    "id": "74",
+    "name": "Participation Trophy",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_074.webp",
+    "tooltip": "Participation Trophy",
+    "criteria": "Manage to go the whole year without TRYING to get a badge and succeeding and get NO BADGES."
+  },
+  {
+    "id": "75",
+    "name": "Pay Attention",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_075.webp",
+    "tooltip": "Pay Attention",
+    "criteria": "As a DM, seamlessly weave a player's backstory into your homebrewed campaign plot."
+  },
+  {
+    "id": "76",
+    "name": "Pettigrew's Path",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_076.webp",
+    "tooltip": "Pettigrew's Path",
+    "criteria": "Betray your friends."
+  },
+  {
+    "id": "77",
+    "name": "Professional Cat Herder",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_077.webp",
+    "tooltip": "Professional Cat Herder",
+    "criteria": "Successfully manage a chaotic group of players."
+  },
+  {
+    "id": "78",
+    "name": "Pupper Master",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_078.webp",
+    "tooltip": "Pupper Master",
+    "criteria": "Be mind controlled or control someone's mind."
+  },
+  {
+    "id": "79",
+    "name": "Red Shirt",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_079.webp",
+    "tooltip": "Red Shirt",
+    "criteria": "Send an NPC into an obviously deadly and dangerous situation that ultimately results in their death."
+  },
+  {
+    "id": "80",
+    "name": "Retconned",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_080.webp",
+    "tooltip": "Retconned",
+    "criteria": "You got caught changing the past during a time travel event to fit a plan."
+  },
+  {
+    "id": "81",
+    "name": "Royal Rumble",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_081.webp",
+    "tooltip": "Royal Rumble",
+    "criteria": "Punch a king."
+  },
+  {
+    "id": "82",
+    "name": "Rule of Cool",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_082.webp",
+    "tooltip": "Rule of Cool",
+    "criteria": "Convince the DM to break Rules as Written in your favor."
+  },
+  {
+    "id": "83",
+    "name": "Servant of the Scythe",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_083.webp",
+    "tooltip": "Servant of the Scythe",
+    "criteria": "Have three party members knocked unconscious during a single round of initiative combat."
+  },
+  {
+    "id": "84",
+    "name": "Shall We Play A Game",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_084.webp",
+    "tooltip": "Shall We Play A Game",
+    "criteria": "Use AI. DM Discretion."
+  },
+  {
+    "id": "85",
+    "name": "Shield Slinging Savant",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_085.webp",
+    "tooltip": "Shield Slinging Savant",
+    "criteria": "Throw a shield at an enemy and cause 20 or more damage."
+  },
+  {
+    "id": "86",
+    "name": "Shyamalan-ed",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_086.webp",
+    "tooltip": "Shyamalan-ed",
+    "criteria": "As a DM, throw a twist into a storyline that completely shocks your players."
+  },
+  {
+    "id": "87",
+    "name": "So, When's the Next One",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_087.webp",
+    "tooltip": "So, When's the Next One",
+    "criteria": "Run your first session as a DM."
+  },
+  {
+    "id": "88",
+    "name": "Stay a While, And Listen",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_088.webp",
+    "tooltip": "Stay a While, And Listen",
+    "criteria": "Run an entire session or storyline inside of a single tavern without leaving."
+  },
+  {
+    "id": "89",
+    "name": "Sycophantic Sovereign",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_089.webp",
+    "tooltip": "Sycophantic Sovereign",
+    "criteria": "Become royalty."
+  },
+  {
+    "id": "90",
+    "name": "That Was Quick",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_090.webp",
+    "tooltip": "That Was Quick",
+    "criteria": "Have a character die at level 1."
+  },
+  {
+    "id": "91",
+    "name": "The Gazebo Awakens",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_091.webp",
+    "tooltip": "The Gazebo Awakens",
+    "criteria": "Find the mimic."
+  },
+  {
+    "id": "92",
+    "name": "The Guild of Thesseus",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_092.webp",
+    "tooltip": "The Guild of Thesseus",
+    "criteria": "Have every party member suffer a character death and re-roll a new character in the same campaign."
+  },
+  {
+    "id": "93",
+    "name": "The Monkey's Paw",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_093.webp",
+    "tooltip": "The Monkey's Paw",
+    "criteria": "Attune to a cursed item."
+  },
+  {
+    "id": "94",
+    "name": "The Unwitting Prophet",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_094.webp",
+    "tooltip": "The Unwitting Prophet",
+    "criteria": "Form a religion."
+  },
+  {
+    "id": "95",
+    "name": "Timid Tactics",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_095.webp",
+    "tooltip": "Timid Tactics",
+    "criteria": "Act like a coward."
+  },
+  {
+    "id": "96",
+    "name": "Tomb Raider",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_096.webp",
+    "tooltip": "Tomb Raider",
+    "criteria": "Steal from a creature's final resting place."
+  },
+  {
+    "id": "97",
+    "name": "Too Fast, Too Furious",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_097.webp",
+    "tooltip": "Too Fast, Too Furious",
+    "criteria": "Move more than 300 feet in a single round of initiative combat."
+  },
+  {
+    "id": "98",
+    "name": "Training Wheels",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_098.webp",
+    "tooltip": "Training Wheels",
+    "criteria": "Guide a new play in their first Dungeons & Dragons (or other tabletop RPG) game."
+  },
+  {
+    "id": "99",
+    "name": "Wait a Minute",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_099.webp",
+    "tooltip": "Wait a Minute",
+    "criteria": "Get called out for using the wrong voice for an NPC."
+  },
+  {
+    "id": "100",
+    "name": "Wall Hacks",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_100.webp",
+    "tooltip": "Wall Hacks",
+    "criteria": "As a DM, have your players complete a puzzle in a completely unintended and unexpected way."
+  },
+  {
+    "id": "101",
+    "name": "Warp Whistle",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_101.webp",
+    "tooltip": "Warp Whistle",
+    "criteria": "Narrowly escape death by teleporting to safety in the middle of a fight."
+  },
+  {
+    "id": "102",
+    "name": "Weekend At Bernie's",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_102.webp",
+    "tooltip": "Weekend At Bernie's",
+    "criteria": "Raised the dead (necromancy) more than 5 times."
+  },
+  {
+    "id": "103",
+    "name": "Wha...How?",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_103.webp",
+    "tooltip": "Wha...How?",
+    "criteria": "Leave the DM speechless."
+  },
+  {
+    "id": "104",
+    "name": "Whoops, My Bad",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_104.webp",
+    "tooltip": "Whoops, My Bad",
+    "criteria": "As a DM, create a situation where a player accidentally gets themselves killed (not through combat)."
+  },
+  {
+    "id": "105",
+    "name": "Why So Serious",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_105.webp",
+    "tooltip": "Why So Serious",
+    "criteria": "Uncontrollably lose your composure during a serious scene."
+  },
+  {
+    "id": "106",
+    "name": "Yes and...",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_106.webp",
+    "tooltip": "Yes and...",
+    "criteria": "As a DM, run a session that is nothing but roleplaying and talking -- no combat -- without anyone noticing."
+  },
+  {
+    "id": "107",
+    "name": "You Have Chosen...Poorly",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_107.webp",
+    "tooltip": "You Have Chosen...Poorly",
+    "criteria": "Get killed trying to use a cursed item."
+  },
+  {
+    "id": "108",
+    "name": "You Shall Not Pass",
+    "imageUrl": "https://raw.githubusercontent.com/ktarverWOS/dnd_badges/main/assets/badges/Badge_108.webp",
+    "tooltip": "You Shall Not Pass",
+    "criteria": "Sacrifice yourself for the party in a grandiose manner."
+  }
+]
