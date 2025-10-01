@@ -35,11 +35,16 @@
       background:#141414e8; color:#fff; padding:8px 10px; border-radius:10px; width:max-content; max-width:280px; text-align:center; font-size:12px; line-height:1.25; box-shadow:0 6px 20px rgba(0,0,0,.35)
     }
     .card:hover::after{opacity:1; transform:translate(-50%,-12px)}
+  
+
+
+
+
     /* Modal */
     dialog{width:min(920px,92vw);border:none;border-radius:16px;padding:0;background:#0008;color:#fff}
     dialog::backdrop{background:#02104f; backdrop-filter:blur(2px)}
     .modal{display:grid;grid-template-columns:1fr 1.15fr}
-    .modal-media{background:#0a0b0f;display:flex;align-items:center;justify-content:center}
+    .modal-media{background:#030d3b;display:flex;align-items:center;justify-content:center}
     .modal-media img{max-height:80vh;width:100%;height:100%;object-fit:contain}
     .modal-body{padding:22px}
     .badge-name{margin:0 0 8px;font-weight:800;font-size:clamp(18px,2.2vw,22px)}
@@ -51,6 +56,11 @@
     .navbtns button{border:1px solid #2a2c33;background:#12131a;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
     .navbtns button:hover{background:#171922}
     @media (max-width:860px){.modal{grid-template-columns:1fr}.modal-media img{max-height:46vh}}
+    
+
+
+
+
     /* ===== Editable color tokens (change just these) ===== */
 :root{
   /* layout */
@@ -78,6 +88,10 @@
   --shadow:0 4px 14px rgba(0,0,0,.14);
 }
 
+
+
+
+
 /* ===== layout for the new top bar ===== */
 header{ display:grid; gap:12px; }
 .toolbar{
@@ -89,6 +103,10 @@ header{ display:grid; gap:12px; }
 .meta-row{
   display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
 }
+
+
+
+
 
 /* ===== inputs & selects use tokens (easy recolor) ===== */
 .search input{
@@ -116,6 +134,10 @@ header{ display:grid; gap:12px; }
 .select select:hover{ background:var(--control-bg-hover); }
 .select select:focus{ outline:2px solid var(--focus); outline-offset:2px; }
 
+
+
+
+
 /* chips & small UI bits pick up tokens, too */
 .chip{
   background:var(--chip);
@@ -123,9 +145,19 @@ header{ display:grid; gap:12px; }
 }
 .chip[aria-pressed="true"]{ outline:2px solid var(--accent); }
 
+
+
+
+
+
 /* optional: hover state for cards uses your border token */
 .card{ background:var(--panel); border:1px solid var(--bd); }
 .card:hover{ border-color:color-mix(in oklab, var(--bd), white 18%); }
+
+
+
+
+
 
 /* (optional) full-bleed toolbar: uncomment if you want edge-to-edge across viewport
 .wrap .toolbar{
@@ -135,6 +167,11 @@ header{ display:grid; gap:12px; }
   padding-left:16px; padding-right:16px;
 }
 */
+
+
+
+
+
 
 /* small screens: stack Sort under the search if it gets too tight */
 @media (max-width:520px){
@@ -147,6 +184,10 @@ header{ display:grid; gap:12px; }
 <body>
   <div class="wrap">
     <header>
+  
+
+
+
   <!-- Top toolbar: full-width search + right-aligned sort -->
   <div class="toolbar" role="search">
     <div class="search">
@@ -162,6 +203,11 @@ header{ display:grid; gap:12px; }
       </select>
     </div>
   </div>
+
+  
+
+
+
 
   <!-- Second row: chips left, result counter right -->
   <div class="meta-row">
@@ -208,6 +254,25 @@ header{ display:grid; gap:12px; }
     const mclose = document.getElementById('mclose');
     const prevBtn= document.getElementById('prevBtn');
     const nextBtn= document.getElementById('nextBtn');
+
+    function updateNavButtons(){
+  if (!prevBtn || !nextBtn) return;
+  prevBtn.disabled = currentIndex <= 0;
+  nextBtn.disabled = currentIndex >= (CURRENT.length - 1);
+  prevBtn.setAttribute('aria-disabled', String(prevBtn.disabled));
+  nextBtn.setAttribute('aria-disabled', String(nextBtn.disabled));
+}
+
+prevBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  if (currentIndex > 0) openModalByIndex(currentIndex - 1);
+});
+
+nextBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  if (currentIndex < CURRENT.length - 1) openModalByIndex(currentIndex + 1);
+});
+
 
     let BADGES = [], CURRENT = [], CATS = [], activeCat = null, currentIndex = -1;
 
@@ -275,6 +340,8 @@ header{ display:grid; gap:12px; }
       [CURRENT[i-1]?.imageUrl, CURRENT[i+1]?.imageUrl].filter(Boolean).forEach(src=>{
         const img = new Image(); img.src = src;
       });
+      updateNavButtons();
+
     }
 
     function closeModal(){
@@ -301,9 +368,17 @@ header{ display:grid; gap:12px; }
       }
     });
 
+    
+
+
+
     // Search/sort
     q.addEventListener('input', applyFiltersAndSort);
     sortEl.addEventListener('change', applyFiltersAndSort);
+
+    
+
+
 
     // Category chips (only if a "category" field exists in any item)
     function buildChips(){
@@ -326,6 +401,11 @@ header{ display:grid; gap:12px; }
       CATS.forEach(cat=> chips.appendChild(make(cat, cat)));
     }
 
+    
+
+
+
+
     // Hash deep link support (#id=123)
     function openFromHash(){
       const m = location.hash.match(/#id=([^&]+)/);
@@ -334,6 +414,11 @@ header{ display:grid; gap:12px; }
       const idx = CURRENT.findIndex(b => String(b.id) === String(id));
       if(idx >= 0) openModalByIndex(idx);
     }
+
+    
+
+
+
 
     // Load JSON and render
     fetch(DATA_URL)
