@@ -7,6 +7,15 @@
 </div>
 </dialog>
 
+<script>
+  const DATA_URL = 'badges.json'; // same folder as index.html
+  fetch(DATA_URL)
+    .then(r => r.json())
+    .then(data => {
+      // render cards (tooltips + modal) from: id, name, imageUrl, tooltip, criteria
+    })
+    .catch(err => console.error('badges.json failed to load', err));
+</script>
 
 <script>
 // Load data and render
