@@ -6,7 +6,7 @@
   <title>D&D Merit Badges</title>
   <meta name="description" content="Interactive D&D merit badge gallery with tooltips and criteria." />
   <style>
-    :root { --gap:14px; --r:14px; --bg:#02104f; --panel:##081d78; --bd:#02104f; --fg:#081d78; --muted:#cfd1d9; --shadow:0 4px 14px rgba(0,0,0,.14); --chip:#181a22; }
+    :root { --gap:14px; --r:14px; --bg:#02104f; --panel:#02104f; --bd:#1e1f25; --fg:#f2f3f5; --muted:#cfd1d9; --shadow:0 4px 14px rgba(0,0,0,.14); --chip:#181a22; }
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--fg)}
     .wrap{max-width:1200px;margin:24px auto 56px;padding:0 16px}
@@ -56,16 +56,16 @@
 <body>
   <div class="wrap">
     <header>
-        <div class="controls">
+      <div class="controls">
         <div class="search">
           <label class="sr-only" for="q">Search</label>
-          <input id="q" type="search" placeholder="Search name of badge or method of earning…" aria-label="Search badges" />
+          <input id="q" type="search" placeholder="Search name or criteria…" aria-label="Search badges" />
         </div>
         <div class="select">
           <label for="sort" class="sr-only">Sort</label>
           <select id="sort" aria-label="Sort">
-            <option value="name-asc">Name ↑</option>
-            <option value="name-desc">Name ↓</option>
+            <option value="name-asc">Name A–Z</option>
+            <option value="name-desc">Name Z–A</option>
           </select>
         </div>
         <div class="counter"><small id="count">0 results</small></div>
