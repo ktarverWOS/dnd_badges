@@ -1,0 +1,84 @@
+<!doctype html>
+<h2 id="modal-title" class="badge-name">Badge</h2>
+<button class="close" id="mclose" aria-label="Close modal">Close</button>
+</div>
+<div class="criteria" id="mcrit"></div>
+</div>
+</div>
+</dialog>
+
+
+<script>
+// Load data and render
+const DATA_URL = 'badges.json'; // keep badges.json in the same folder
+
+
+// Elements
+const grid = document.getElementById('grid');
+const q = document.getElementById('q');
+const modal = document.getElementById('modal');
+const mimg = document.getElementById('mimg');
+const mtitle = document.getElementById('modal-title');
+const mcrit = document.getElementById('mcrit');
+const mclose = document.getElementById('mclose');
+
+
+let BADGES = [], CURRENT = [];
+
+
+const norm = s => (s||'').toLowerCase();
+
+
+function createCard(b){
+const el = document.createElement('article');
+el.className = 'card';
+el.setAttribute('role','listitem');
+el.setAttribute('tabindex','0');
+el.dataset.tooltip = b.tooltip || '';
+el.innerHTML = `
+<img class="thumb" src="${b.imageUrl}" loading="lazy" alt="${b.name}">
+<div class="meta"><div class="title">${b.name}</div></div>`;
+el.addEventListener('click', ()=>openModal(b));
+el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(b); } });
+return el;
+}
+
+
+function render(list){
+grid.innerHTML = '';
+const frag = document.createDocumentFragment();
+list.forEach(b=>frag.appendChild(createCard(b)));
+grid.appendChild(frag);
+}
+
+
+function openModal(b){
+mimg.src = b.imageUrl; mimg.alt = b.name;
+mtitle.textContent = b.name;
+mcrit.textContent = b.criteria || '';
+if(!modal.open) modal.showModal();
+}
+
+
+// Modal wiring
+mclose.addEventListener('click', ()=>modal.close());
+modal.addEventListener('click', e=>{ if(e.target===modal) modal.close(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.open) modal.close(); });
+
+
+// Search
+q.addEventListener('input', ()=>{
+const term = norm(q.value);
+CURRENT = term ? BADGES.filter(b => norm(b.name).includes(term) || norm(b.criteria).includes(term)) : BADGES;
+render(CURRENT);
+});
+
+
+// Fetch data
+fetch(DATA_URL)
+.then(r => r.json())
+.then(data => { BADGES = data; CURRENT = data; render(BADGES); })
+.catch(err => { console.error('badges.json failed to load', err); grid.innerHTML = '<p>Could not load badges.</p>'; });
+</script>
+</body>
+</html>
