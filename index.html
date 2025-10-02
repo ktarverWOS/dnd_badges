@@ -293,12 +293,16 @@ nextBtn.addEventListener('click', (e)=>{
     }
 
     function render(list){
-      grid.innerHTML='';
-      const f=document.createDocumentFragment();
-      list.forEach((b,i)=>f.appendChild(createCard(b,i)));
-      grid.appendChild(f);
-      count.textContent = list.length + (list.length===1?' result':' results');
-    }
+  grid.innerHTML = '';
+  const f = document.createDocumentFragment();
+  list.forEach((b,i)=>f.appendChild(createCard(b,i)));
+  grid.appendChild(f);
+
+  if (count) {
+    count.textContent = `${list.length} result${list.length===1?'':'s'}`;
+  }
+}
+
 
     function applyFiltersAndSort(){
       const term = norm(q.value);
@@ -422,24 +426,27 @@ nextBtn.addEventListener('click', (e)=>{
 
     // Load JSON and render
     fetch(DATA_URL)
-      .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-      .then(data=>{
-        BADGES = (Array.isArray(data)? data : []).map(b=>({
-          id: b.id ?? '',
-          name: b.name ?? 'Untitled Badge',
-          imageUrl: b.imageUrl ?? '',
-          tooltip: b.tooltip ?? '',
-          criteria: b.criteria ?? '',
-          category: b.category ?? null
-        }));
-        buildChips();
-        applyFiltersAndSort();
-        openFromHash(); // handle direct links
-      })
-      .catch(e=>{
-        console.error('badges.json load failed:', e);
-        err.textContent = 'Could not load badges.json ('+e.message+'). Make sure badges.json is in the same folder and valid JSON.';
-      });
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    BADGES = (Array.isArray(data) ? data : []).map(b => ({
+      id: b.id ?? '',
+      name: b.name ?? 'Untitled Badge',
+      imageUrl: b.imageUrl ?? '',
+      tooltip: b.tooltip ?? '',
+      criteria: b.criteria ?? '',
+      category: b.category ?? null
+    }));
+    buildChips();
+    applyFiltersAndSort();
+    openFromHash(); // handle direct links
+  })
+  .catch(e => {
+    console.error('badges.json load failed:', e);
+    if (err) {
+      err.textContent = `Could not load badges.json (${e.message}). Make sure badges.json is in the same folder and valid JSON.`;
+    }
+  });
+
   </script>
 </body>
 </html>
