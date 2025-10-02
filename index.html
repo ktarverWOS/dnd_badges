@@ -177,6 +177,33 @@ header{ display:grid; gap:12px; }
 }
 
 
+/* Ensure the top row is flex */
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+/* Make the search section fill the row */
+.search{
+  flex:1 1 100%;
+  min-width:0;            /* crucial so it can grow/shrink properly */
+}
+
+/* Make the input itself fill its parent */
+.search input{
+  display:block;
+  width:100%;
+  max-width:none;
+  box-sizing:border-box;
+}
+
+/* Keep Sort snug on the right */
+.select{
+  margin-left:auto;
+  flex:0 0 auto;
+}
 
 
 
