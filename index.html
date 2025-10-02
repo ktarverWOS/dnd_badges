@@ -214,7 +214,17 @@ header{ display:grid; gap:12px; }
     padding-right:16px;
 }
 
-  
+  .toolbar{ display:flex; align-items:center; gap:10px; flex-wrap:nowrap; }
+  .search{ flex:1 1 100%; min-width:0; }         /* lets it stretch */
+  .search input{ display:block; width:100%; box-sizing:border-box; }
+  .select{ margin-left:auto; flex:0 0 auto; }     /* keeps Sort snug on the right */
+
+    /* Turn OFF full-bleed; keep it centered in the wrapper */
+  .wrap .toolbar{
+    width: 100%;
+    margin: 0;
+    padding-inline: 0; /* or 16px if you want some side padding */
+  }
 
 
   </style>
