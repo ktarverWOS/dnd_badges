@@ -58,6 +58,16 @@ dialog::backdrop{background:var(--overlay)}
 
 /* a11y helper */
 .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+/* anchor nav to lower-right of the details pane */
+.modal-info{ position: relative; padding-bottom: 56px; } /* room for buttons */
+.navbtns{
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  margin: 0;
+}
+
 </style>
 </head>
 <body>
