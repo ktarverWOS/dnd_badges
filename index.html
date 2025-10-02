@@ -38,8 +38,8 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 .err{margin-top:8px; color:#ffd8d8}
 
 /* modal */
-/*dialog#modal{border:none; padding:0; border-radius:16px; background:transparent; color:var(--fg); width:min(900px,92vw)} */
-/* dialog::backdrop{background:var(--overlay)} */
+dialog#modal{border:none; padding:0; border-radius:16px; background:transparent; color:var(--fg); width:min(900px,92vw)}
+dialog::backdrop{background:var(--overlay)}
 .modal-wrap{display:grid; grid-template-columns:1fr 360px; max-height:85vh}
 .modal-media{background:var(--modal-media-bg); display:flex; align-items:center; justify-content:center; padding:16px}
 .modal-media img{max-width:100%; max-height:calc(85vh - 32px); border-radius:12px}
@@ -76,23 +76,6 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 }
 .counter { display: none !important; }
 
-
-/* CSS overlay modal (replaces <dialog>) */
-#modal[hidden]{ display:none; }
-#modal{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  background: var(--overlay); /* you already have this token */
-}
-
-/* Optional: prevent scrolling inside the iframe while modal is open */
-html.is-modal-open { overflow: hidden; }
-
-
-
 </style>
 </head>
 <body>
@@ -117,7 +100,7 @@ html.is-modal-open { overflow: hidden; }
     <div id="grid" class="grid" aria-live="polite"></div>
   </div>
 
-  <div id="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
+  <dialog id="modal" aria-labelledby="modal-title">
     <div class="modal-wrap">
       <div class="modal-media">
         <img id="mimg" alt="">
@@ -132,7 +115,7 @@ html.is-modal-open { overflow: hidden; }
         </div>
       </div>
     </div>
-  </div>
+  </dialog>
 
 <script>
 const DATA_URL = 'badges.json';
@@ -197,32 +180,22 @@ function render(list){
 }
 
 function openModalByIndex(i){
-  if (i < 0 || i >= CURRENT.length) return;
+  if (i<0 || i>=CURRENT.length) return;
   currentIndex = i;
   const b = CURRENT[i];
-
   mimg.src = b.imageUrl;
-  mimg.alt = b.name || '';
+  mimg.alt = b.name;
   mtitle.textContent = b.name || '';
-  mcrit.textContent  = b.criteria || '';
-
-  modalOpen();                 // ✅ was: modal.showModal()
+  mcrit.textContent = b.criteria || '';
+  if (!modal.open) modal.showModal();
   updateNavButtons();
   preload(i-1); preload(i+1);
 }
-
-
-
-
 function preload(i){
   if (i<0 || i>=CURRENT.length) return;
   const im = new Image(); im.src = CURRENT[i].imageUrl;
 }
-function closeModal(){
-  modalClose();                // ✅ was: modal.close()
-  currentIndex = -1;
-}
-
+function closeModal(){ modal.close(); currentIndex = -1; }
 
 mclose.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
@@ -242,35 +215,18 @@ function openModalByIndex(i){
   mtitle.textContent = b.name || '';
   mcrit.textContent = b.criteria || '';
 
-  /* if (!modal.open){
-    /* modal.showModal(); */
+  if (!modal.open){
+    modal.showModal();
     // prevent focusing the dialog from scrolling the page
     requestAnimationFrame(()=> modal.focus({ preventScroll:true }));
-  } 
+  }
 
   updateNavButtons();
   preload(i-1); preload(i+1);
 }
 
-
-function modalIsOpen(){ return !modal.hasAttribute('hidden'); }
-function modalOpen(){
-  if (!modalIsOpen()){
-    modal.removeAttribute('hidden');
-    document.documentElement.classList.add('is-modal-open'); // lock iframe scroll
-  }
-}
-function modalClose(){
-  if (modalIsOpen()){
-    modal.setAttribute('hidden','');
-    document.documentElement.classList.remove('is-modal-open');
-  }
-}
-
-
-
 document.addEventListener('keydown', e=>{
-  if (!modalIsOpen) return;
+  if (!modal.open) return;
   if (e.key==='ArrowLeft' && currentIndex>0) openModalByIndex(currentIndex-1);
   else if (e.key==='ArrowRight' && currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1);
   else if (e.key==='Escape') closeModal();
