@@ -226,6 +226,34 @@ header{ display:grid; gap:12px; }
     padding-inline: 0; /* or 16px if you want some side padding */
   }
 
+    /* keep the toolbar on one line and full width inside the wrapper */
+  .toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;  /* override the later wrap */
+    width:100%;
+  }
+
+  /* make the search area fill the row */
+  .search{
+    flex:1 1 100% !important;   /* override the 680px basis */
+    min-width:0 !important;     /* allow it to grow/shrink */
+  }
+
+  /* make the input itself stretch */
+  .search input{
+    display:block;
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+  }
+
+  /* keep Sort snug on the right */
+  .select{
+    margin-left:auto;
+    flex:0 0 auto;
+  }
 
   </style>
 </head>
