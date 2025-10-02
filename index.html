@@ -1,210 +1,527 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Badge Gallery (Lite)</title>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D Merit Badges</title>
+  <meta name="description" content="Interactive D&D merit badge gallery with tooltips and criteria." />
+  <style>
+    :root { --gap:14px; --r:14px; --bg:#02104f; --panel:#02104f; --bd:#1e1f25; --fg:#081963; --muted:#cfd1d9; --shadow:0 4px 14px rgba(0,0,0,.14); --chip:#181a22; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--fg)}
+    .wrap{max-width:1200px;margin:24px auto 56px;padding:0 16px}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    h1{font-size:clamp(22px,2.4vw,32px);margin:0}
+    .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .search{flex:1 1 260px;min-width:260px}
+    .search input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #232428;background:#141519;color:#e9eaee;outline:none}
+    .select, .counter{display:flex;gap:8px;align-items:center}
+    select{border:1px solid #232428;background:#141519;color:#e9eaee;border-radius:12px;padding:10px 12px;outline:none}
+    .counter small{color:var(--muted)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:var(--chip);border:1px solid #2a2c33;border-radius:999px;font-size:12px;cursor:pointer;user-select:none}
+    .chip[aria-pressed="true"]{outline:2px solid #7c3aed}
+    .err{margin-top:12px;color:#ffb4b4;font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--gap);margin-top:18px}
+    .card{position:relative;background:var(--panel);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s ease,border-color .12s ease}
+    .card:hover{transform:translateY(-2px);border-color:#2a2c33}
+    .thumb{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .meta{padding:10px 12px 12px}
+    .title{font-size:14px;font-weight:600;line-height:1.2}
+    /* Tooltip */
+    .card[data-tooltip]::after{
+      content:attr(data-tooltip); position:absolute; left:50%; bottom:100%; transform:translate(-50%,-8px);
+      opacity:0; pointer-events:none; transition:opacity .12s ease, transform .12s ease;
+      background:#141414e8; color:#fff; padding:8px 10px; border-radius:10px; width:max-content; max-width:280px; text-align:center; font-size:12px; line-height:1.25; box-shadow:0 6px 20px rgba(0,0,0,.35)
+    }
+    .card:hover::after{opacity:1; transform:translate(-50%,-12px)}
+  
+
+
+
+
+    /* Modal */
+    dialog{width:min(920px,92vw);border:none;border-radius:16px;padding:0;background:#0008;color:#fff}
+    dialog::backdrop{background:#02104f; backdrop-filter:blur(2px)}
+    .modal{display:grid;grid-template-columns:1fr 1.15fr}
+    .modal-media{background:#030d3b;display:flex;align-items:center;justify-content:center}
+    .modal-media img{max-height:80vh;width:100%;height:100%;object-fit:contain}
+    .modal-body{padding:22px}
+    .badge-name{margin:0 0 8px;font-weight:800;font-size:clamp(18px,2.2vw,22px)}
+    .criteria{white-space:pre-wrap;color:var(--muted);line-height:1.55;font-size:15px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .close{border:1px solid #2a2c33;background:##040d36;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
+    .close:hover{background:#171922}
+    .navbtns{display:flex;gap:8px}
+    .navbtns button{border:1px solid #2a2c33;background:#12131a;color:#e9eaee;border-radius:10px;padding:8px 12px;cursor:pointer}
+    .navbtns button:hover{background:#171922}
+    @media (max-width:860px){.modal{grid-template-columns:1fr}.modal-media img{max-height:46vh}}
+    
+
+
+
+
+    /* ===== Editable color tokens (change just these) ===== */
 :root{
-  /* —— quick color knobs —— */
-  --bg:#02104f; --fg:#f2f3f5; --muted:#cdd4ff;
-  --panel:#0b1247; --bd:#3a48b0; --r:12px; --gap:14px;
+  /* layout */
+  --gap:14px; --r:14px;
 
-  --control-bg:#0d155c; --control-bg-hover:#111a70;
-  --control-bd:#2a347a; --control-fg:#f2f3f5; --accent:#7c9eff;
+  /* palette – tweak these to play with the scheme */
+  --bg:#02104f;              /* page background */
+  --panel:#051769;           /* card/panel background */
+  --bd:#030d3b;              /* generic borders */
+  --fg:#f2f3f5;              /* main text */
+  --muted:#cdd4ff;           /* secondary text */
 
-  --modal-bg:#0f1015; --modal-media-bg:#0a0b0f; --overlay:rgba(0,0,0,.6);
-}
-*{box-sizing:border-box}
-body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--fg)}
-.wrap{max-width:1100px; margin:0 auto; padding:16px}
+  /* controls (inputs, selects, buttons) */
+  --control-bg:#0d155c;
+  --control-bd:#2a347a;
+  --control-fg:#f2f3f5;
+  --control-bg-hover:#111a70;
+  --chip:#0b1247;
+  --chip-bd:#2a347a;
 
-/* top bar */
-.toolbar{display:flex; align-items:center; gap:10px}
-.search{flex:1 1 100%; min-width:0}
-.search input{width:100%; padding:12px 14px; border:1px solid var(--control-bd); border-radius:12px; background:var(--control-bg); color:var(--control-fg); outline:none}
-.search input:hover{background:var(--control-bg-hover)}
-.search input:focus{outline:2px solid var(--accent); outline-offset:2px}
-.select{margin-left:auto; flex:0 0 auto}
-.select select{padding:10px 12px; border:1px solid var(--control-bd); border-radius:12px; background:var(--control-bg); color:var(--control-fg)}
+  /* accent/focus */
+  --accent:#7c9eff;
+  --focus:#a3b0ff;
 
-/* grid */
-.grid{display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); margin-top:16px}
-.card{background:var(--panel); border:1px solid var(--bd); border-radius:var(--r); padding:8px; cursor:pointer}
-.card img{display:block; width:100%; border-radius:calc(var(--r) - 6px)}
-
-/* small status text */
-.counter{margin-top:8px; color:var(--muted)}
-.err{margin-top:8px; color:#ffd8d8}
-
-/* modal */
-dialog#modal{border:none; padding:0; border-radius:16px; background:transparent; color:var(--fg); width:min(900px,92vw)}
-dialog::backdrop{background:var(--overlay)}
-.modal-wrap{display:grid; grid-template-columns:1fr 360px; max-height:85vh}
-.modal-media{background:var(--modal-media-bg); display:flex; align-items:center; justify-content:center; padding:16px}
-.modal-media img{max-width:100%; max-height:calc(85vh - 32px); border-radius:12px}
-.modal-info{background:var(--modal-bg); border-left:1px solid var(--bd); padding:16px; display:flex; flex-direction:column; gap:10px; position:relative}
-.modal-title{font-weight:600}
-.navbtns{display:flex; gap:8px}
-.navbtns button{padding:8px 10px; border:1px solid var(--control-bd); border-radius:10px; background:var(--control-bg); color:var(--control-fg); cursor:pointer}
-.navbtns button[disabled]{opacity:.45; pointer-events:none; cursor:not-allowed}
-.close{position:absolute; top:8px; right:8px; background:transparent; border:none; color:var(--fg); font-size:20px; cursor:pointer}
-
-@media (max-width:720px){
-  .modal-wrap{grid-template-columns:1fr}
-  .modal-info{border-left:none; border-top:1px solid var(--bd)}
-  .modal-media img{max-height:60vh}
+  --shadow:0 4px 14px rgba(0,0,0,.14);
 }
 
-/* a11y helper */
-.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
-</style>
+
+
+
+
+/* ===== layout for the new top bar ===== */
+header{ display:grid; gap:12px; }
+.toolbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:nowrap;
+}
+.search{ flex:1 1 auto; min-width:0; } /* lets the input take the whole row */
+.select{ margin-left:auto; }           /* pushes Sort to the right */
+
+.meta-row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+
+
+
+
+
+/* ===== inputs & selects use tokens (easy recolor) ===== */
+.search input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--control-bd);
+  background:var(--control-bg);
+  color:var(--control-fg);
+  outline:none;
+}
+.search input:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+.search input:hover{ background:var(--control-bg-hover); }
+
+.select select{
+  border:1px solid var(--control-bd);
+  background:var(--control-bg);
+  color:var(--control-fg);
+  border-radius:12px;
+  padding:10px 12px;
+  outline:none;
+  width:auto;                 /* keep Sort compact on the right */
+  max-width:100%;
+}
+.select select:hover{ background:var(--control-bg-hover); }
+.select select:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+
+
+
+
+
+/* chips & small UI bits pick up tokens, too */
+.chip{
+  background:var(--chip);
+  border:1px solid var(--chip-bd);
+}
+.chip[aria-pressed="true"]{ outline:2px solid var(--accent); }
+
+
+
+
+
+
+/* optional: hover state for cards uses your border token */
+.card{ background:var(--panel); border:1px solid var(--bd); }
+.card:hover{ border-color:color-mix(in oklab, var(--bd), white 18%); }
+
+
+
+
+/* small screens: stack Sort under the search if it gets too tight */
+@media (max-width:520px){
+  .toolbar{ flex-wrap:wrap; }
+  .select{ margin-left:0; }
+}
+
+
+/* Put this at the END of your <style> so it overrides earlier rules */
+:root{
+  /* easy knobs */
+  --search-basis: 680px;   /* preferred width inside the row */
+  --search-min: 280px;     /* don’t shrink below this */
+}
+
+.search{
+  flex: 1 1 var(--search-basis);
+  min-width: var(--search-min);
+}
+
+
+/* Ensure the top row is flex */
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+/* Make the search section fill the row */
+.search{
+  flex:1 1 100%;
+  min-width:0;            /* crucial so it can grow/shrink properly */
+}
+
+/* Make the input itself fill its parent */
+.search input{
+  display:block;
+  width:100%;
+  max-width:none;
+  box-sizing:border-box;
+}
+
+/* Keep Sort snug on the right */
+.select{
+  margin-left:auto;
+  flex:0 0 auto;
+}
+
+  /* Full-bleed toolbar (optional) */
+  .wrap .toolbar{
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    padding-left:16px;
+    padding-right:16px;
+}
+
+  .toolbar{ display:flex; align-items:center; gap:10px; flex-wrap:nowrap; }
+  .search{ flex:1 1 100%; min-width:0; }         /* lets it stretch */
+  .search input{ display:block; width:100%; box-sizing:border-box; }
+  .select{ margin-left:auto; flex:0 0 auto; }     /* keeps Sort snug on the right */
+
+    /* Turn OFF full-bleed; keep it centered in the wrapper */
+  .wrap .toolbar{
+    width: 100%;
+    margin: 0;
+    padding-inline: 0; /* or 16px if you want some side padding */
+  }
+
+    /* keep the toolbar on one line and full width inside the wrapper */
+  .toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;  /* override the later wrap */
+    width:100%;
+  }
+
+  /* make the search area fill the row */
+  .search{
+    flex:1 1 100% !important;   /* override the 680px basis */
+    min-width:0 !important;     /* allow it to grow/shrink */
+  }
+
+  /* make the input itself stretch */
+  .search input{
+    display:block;
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+  }
+
+  /* keep Sort snug on the right */
+  .select{
+    margin-left:auto;
+    flex:0 0 auto;
+  }
+
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="toolbar" role="search">
-      <div class="search">
-        <label class="sr-only" for="q">Search badges</label>
-        <input id="q" type="search" placeholder="Search badges…" autocomplete="off" />
-      </div>
-      <div class="select">
-        <label class="sr-only" for="sort">Sort</label>
-        <select id="sort">
-          <option value="name-asc">Name ↑</option>
-          <option value="name-desc">Name ↓</option>
-        </select>
-      </div>
+    <header>
+  
+
+
+
+  <!-- Top toolbar: full-width search + right-aligned sort -->
+  <div class="toolbar" role="search">
+    <div class="search">
+            <input id="q" type="search" placeholder="Search name or type of badge…" aria-label="Search badges" />
     </div>
 
-    <div class="counter"><small id="count"></small></div>
-    <div id="err" class="err" role="status" aria-live="polite"></div>
+    <div class="select">
+      <label for="sort" class="sr-only"></label>
+      <select id="sort" aria-label="">
+        <option value="name-asc">Name ↑</option>
+        <option value="name-desc">Name ↓</option>
+      </select>
+    </div>
+  </div>
 
-    <div id="grid" class="grid" aria-live="polite"></div>
+  
+
+
+
+
+  <!-- Second row: chips left, result counter right -->
+  <div class="meta-row">
+    <div id="chips" class="chips" hidden></div>
+    <!--div class="counter"><small id="count">0 results</small></div-->
+  </div>
+
+  <div id="err" class="err" role="status" aria-live="polite"></div>
+</header>
+    <div id="grid" class="grid" role="list" aria-label="Badge list"></div>
   </div>
 
   <dialog id="modal" aria-labelledby="modal-title">
-    <div class="modal-wrap">
-      <div class="modal-media">
-        <img id="mimg" alt="">
-      </div>
-      <div class="modal-info">
-        <button id="mclose" class="close" aria-label="Close">✕</button>
-        <div id="modal-title" class="modal-title"></div>
-        <div id="mcrit"></div>
-        <div class="navbtns">
-          <button id="prevBtn" aria-label="Previous">← Prev</button>
-          <button id="nextBtn" aria-label="Next">Next →</button>
+    <div class="modal">
+      <div class="modal-media"><img id="mimg" alt="" /></div>
+      <div class="modal-body">
+        <div class="topbar">
+          <h2 id="modal-title" class="badge-name">Badge</h2>
+          <div class="navbtns">
+            <button id="prevBtn" aria-label="Previous badge">←</button>
+            <button id="nextBtn" aria-label="Next badge">→</button>
+            <button class="close" id="mclose" aria-label="Close modal">Close</button>
+          </div>
         </div>
+        <div class="criteria" id="mcrit"></div>
       </div>
     </div>
   </dialog>
 
-<script>
-const DATA_URL = 'badges.json';
+  <script>
+    const DATA_URL = 'badges.json'; // keep next to index.html
 
-const grid   = document.getElementById('grid');
-const q      = document.getElementById('q');
-const sortEl = document.getElementById('sort');
-const count  = document.getElementById('count');
-const errEl  = document.getElementById('err');
+    const grid   = document.getElementById('grid');
+    const q      = document.getElementById('q');
+    const sortEl = document.getElementById('sort');
+    const count  = document.getElementById('count');
+    const chips  = document.getElementById('chips');
+    const err    = document.getElementById('err');
 
-const modal  = document.getElementById('modal');
-const mimg   = document.getElementById('mimg');
-const mtitle = document.getElementById('modal-title');
-const mcrit  = document.getElementById('mcrit');
-const mclose = document.getElementById('mclose');
-const prevBtn= document.getElementById('prevBtn');
-const nextBtn= document.getElementById('nextBtn');
+    const modal  = document.getElementById('modal');
+    const mimg   = document.getElementById('mimg');
+    const mtitle = document.getElementById('modal-title');
+    const mcrit  = document.getElementById('mcrit');
+    const mclose = document.getElementById('mclose');
+    const prevBtn= document.getElementById('prevBtn');
+    const nextBtn= document.getElementById('nextBtn');
 
-let BADGES = [];
-let CURRENT = [];
-let currentIndex = -1;
-
-const norm = s => (s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-
-function apply(){
-  const term = norm(q.value);
-  const dir  = sortEl.value;
-  CURRENT = BADGES.filter(b => !term || norm(b.name).includes(term));
-  CURRENT.sort((a,b)=>{
-    const an = norm(a.name), bn = norm(b.name);
-    return dir === 'name-desc' ? bn.localeCompare(an) : an.localeCompare(bn);
-  });
-  render(CURRENT);
+    function updateNavButtons(){
+  if (!prevBtn || !nextBtn) return;
+  prevBtn.disabled = currentIndex <= 0;
+  nextBtn.disabled = currentIndex >= (CURRENT.length - 1);
+  prevBtn.setAttribute('aria-disabled', String(prevBtn.disabled));
+  nextBtn.setAttribute('aria-disabled', String(nextBtn.disabled));
 }
 
-function render(list){
-  grid.innerHTML = '';
-  const frag = document.createDocumentFragment();
-  list.forEach((b,i)=>{
-    const card = document.createElement('button');
-    card.className = 'card';
-    card.type = 'button';
-    card.setAttribute('aria-label', b.name);
-    card.addEventListener('click', ()=> openModalByIndex(i));
-    const img = document.createElement('img');
-    img.loading = 'lazy';
-    img.alt = b.name;
-    img.src = b.imageUrl;
-    card.appendChild(img);
-    frag.appendChild(card);
-  });
-  grid.appendChild(frag);
-  if (count) count.textContent = list.length ? `${list.length} result${list.length===1?'':'s'}` : 'No results';
-}
-
-function openModalByIndex(i){
-  if (i<0 || i>=CURRENT.length) return;
-  currentIndex = i;
-  const b = CURRENT[i];
-  mimg.src = b.imageUrl;
-  mimg.alt = b.name;
-  mtitle.textContent = b.name || '';
-  mcrit.textContent = b.criteria || '';
-  if (!modal.open) modal.showModal();
-  updateNavButtons();
-  preload(i-1); preload(i+1);
-}
-function preload(i){
-  if (i<0 || i>=CURRENT.length) return;
-  const im = new Image(); im.src = CURRENT[i].imageUrl;
-}
-function closeModal(){ modal.close(); currentIndex = -1; }
-
-mclose.addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-prevBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex>0) openModalByIndex(currentIndex-1); });
-nextBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1); });
-function updateNavButtons(){
-  prevBtn.disabled = currentIndex<=0;
-  nextBtn.disabled = currentIndex>=CURRENT.length-1;
-}
-document.addEventListener('keydown', e=>{
-  if (!modal.open) return;
-  if (e.key==='ArrowLeft' && currentIndex>0) openModalByIndex(currentIndex-1);
-  else if (e.key==='ArrowRight' && currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1);
-  else if (e.key==='Escape') closeModal();
+prevBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  if (currentIndex > 0) openModalByIndex(currentIndex - 1);
 });
 
-q.addEventListener('input', apply);
-sortEl.addEventListener('change', apply);
+nextBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  if (currentIndex < CURRENT.length - 1) openModalByIndex(currentIndex + 1);
+});
 
-fetch(DATA_URL)
-  .then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+
+    let BADGES = [], CURRENT = [], CATS = [], activeCat = null, currentIndex = -1;
+
+    const norm = s => (s||'').toLowerCase();
+    const toNum = v => Number(String(v).replace(/[^0-9.-]/g,'')) || 0;
+
+    function createCard(b, idx){
+      const el = document.createElement('article');
+      el.className='card'; el.tabIndex=0; el.role='listitem';
+      el.dataset.tooltip = b.tooltip || '';
+      el.dataset.index = idx;
+      const src = b.imageUrl || 'https://via.placeholder.com/512x512?text=Badge';
+      el.innerHTML = '<img class="thumb" src="'+src+'" loading="lazy" alt="'+(b.name||'Badge')+'">'+
+                     '<div class="meta"><div class="title">'+(b.name||'Badge')+'</div></div>';
+      el.addEventListener('click',()=>openModalByIndex(idx));
+      el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModalByIndex(idx);} });
+      return el;
+    }
+
+    function render(list){
+  grid.innerHTML = '';
+  const f = document.createDocumentFragment();
+  list.forEach((b,i)=>f.appendChild(createCard(b,i)));
+  grid.appendChild(f);
+
+  if (count) {
+    count.textContent = `${list.length} result${list.length===1?'':'s'}`;
+  }
+}
+
+
+    function applyFiltersAndSort(){
+      const term = norm(q.value);
+      let list = BADGES.filter(b => {
+        const matchText = norm(b.name).includes(term) || norm(b.criteria).includes(term);
+        const matchCat = !activeCat || (b.category && b.category === activeCat);
+        return matchText && matchCat;
+      });
+
+      const mode = sortEl.value;
+      list.sort((a,b)=>{
+        if(mode==='name-asc') return norm(a.name).localeCompare(norm(b.name));
+        if(mode==='name-desc') return norm(b.name).localeCompare(norm(a.name));
+        if(mode==='id-asc') return toNum(a.id) - toNum(b.id);
+        if(mode==='id-desc') return toNum(b.id) - toNum(a.id);
+        return 0;
+      });
+
+      CURRENT = list;
+      render(CURRENT);
+    }
+
+    function openModalByIndex(i){
+      if(i<0 || i>=CURRENT.length) return;
+      currentIndex = i;
+      const b = CURRENT[i];
+      mimg.src = b.imageUrl || 'https://via.placeholder.com/1024x1024?text=Badge';
+      mimg.alt = b.name || 'Badge';
+      mtitle.textContent = b.name || 'Badge';
+      mcrit.textContent = b.criteria || '';
+      // deep link
+      const id = b.id ?? '';
+      if(id) history.replaceState(null, '', '#id=' + encodeURIComponent(id));
+      // show
+      if(!modal.open) modal.showModal();
+      // focus trap start
+      setTimeout(()=>mclose.focus(), 0);
+      // preload neighbors
+      [CURRENT[i-1]?.imageUrl, CURRENT[i+1]?.imageUrl].filter(Boolean).forEach(src=>{
+        const img = new Image(); img.src = src;
+      });
+      updateNavButtons();
+
+    }
+
+    function closeModal(){
+      modal.close();
+      currentIndex = -1;
+      // clear hash
+      if(location.hash.startsWith('#id=')) history.replaceState(null, '', location.pathname + location.search);
+    }
+
+    // Modal wiring
+    mclose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Escape' && modal.open) closeModal();
+      if(!modal.open) return;
+      if(e.key==='ArrowLeft')  { if(currentIndex>0) openModalByIndex(currentIndex-1); }
+      if(e.key==='ArrowRight') { if(currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1); }
+      if(e.key==='Tab'){ // very light focus trap
+        const focusables = modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+        const first = focusables[0], last = focusables[focusables.length-1];
+        if(!focusables.length) return;
+        if(e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
+        else if(!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+      }
+    });
+
+    
+
+
+
+    // Search/sort
+    q.addEventListener('input', applyFiltersAndSort);
+    sortEl.addEventListener('change', applyFiltersAndSort);
+
+    
+
+
+
+    // Category chips (only if a "category" field exists in any item)
+    function buildChips(){
+      CATS = [...new Set(BADGES.map(b=>b.category).filter(Boolean))];
+      if(!CATS.length){ chips.hidden = true; return; }
+      chips.hidden = false;
+      chips.innerHTML = '';
+      const make = (label,val)=> {
+        const c = document.createElement('button');
+        c.type='button'; c.className='chip';
+        c.textContent = label; c.setAttribute('aria-pressed', String(val===activeCat));
+        c.addEventListener('click', ()=>{
+          activeCat = (activeCat===val) ? null : val;
+          buildChips(); // refresh pressed state
+          applyFiltersAndSort();
+        });
+        return c;
+      };
+      chips.appendChild(make('All', null));
+      CATS.forEach(cat=> chips.appendChild(make(cat, cat)));
+    }
+
+    
+
+
+
+
+    // Hash deep link support (#id=123)
+    function openFromHash(){
+      const m = location.hash.match(/#id=([^&]+)/);
+      if(!m) return;
+      const id = decodeURIComponent(m[1]);
+      const idx = CURRENT.findIndex(b => String(b.id) === String(id));
+      if(idx >= 0) openModalByIndex(idx);
+    }
+
+    
+
+
+
+
+    // Load JSON and render
+    fetch(DATA_URL)
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
   .then(data => {
     BADGES = (Array.isArray(data) ? data : []).map(b => ({
       id: b.id ?? '',
-      name: b.name ?? 'Untitled',
+      name: b.name ?? 'Untitled Badge',
       imageUrl: b.imageUrl ?? '',
-      criteria: b.criteria ?? ''
+      tooltip: b.tooltip ?? '',
+      criteria: b.criteria ?? '',
+      category: b.category ?? null
     }));
-    apply();
+    buildChips();
+    applyFiltersAndSort();
+    openFromHash(); // handle direct links
   })
-  .catch(e=>{
+  .catch(e => {
     console.error('badges.json load failed:', e);
-    if (errEl) errEl.textContent = `Could not load badges.json (${e.message}).`;
+    if (err) {
+      err.textContent = `Could not load badges.json (${e.message}). Make sure badges.json is in the same folder and valid JSON.`;
+    }
   });
-</script>
+
+  </script>
 </body>
 </html>
