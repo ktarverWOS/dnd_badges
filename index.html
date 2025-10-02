@@ -157,27 +157,28 @@ header{ display:grid; gap:12px; }
 
 
 
-
-
-
-.wrap .toolbar{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  margin-right:calc(50% - 50vw);
-  padding-left:16px; padding-right:16px;
-}
-*/
-
-
-
-
-
-
 /* small screens: stack Sort under the search if it gets too tight */
 @media (max-width:520px){
   .toolbar{ flex-wrap:wrap; }
   .select{ margin-left:0; }
 }
+
+
+/* Put this at the END of your <style> so it overrides earlier rules */
+:root{
+  /* easy knobs */
+  --search-basis: 680px;   /* preferred width inside the row */
+  --search-min: 280px;     /* don’t shrink below this */
+}
+
+.search{
+  flex: 1 1 var(--search-basis);
+  min-width: var(--search-min);
+}
+
+
+
+
 
   </style>
 </head>
