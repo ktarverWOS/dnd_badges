@@ -3,16 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Badge Gallery (Overlay Modal + Anti-Jump)</title>
+<title>Badge Gallery (Overlay Modal + Anti-Jump + Compat)</title>
 <style>
 :root{
-  /* —— quick color knobs —— */
   --bg:#02104f; --fg:#f2f3f5; --muted:#cdd4ff;
   --panel:#0b1247; --bd:#3a48b0; --r:12px; --gap:14px;
-
   --control-bg:#0d155c; --control-bg-hover:#111a70;
   --control-bd:#2a347a; --control-fg:#f2f3f5; --accent:#7c9eff;
-
   --modal-bg:#02104f; --modal-media-bg:#030d3b; --overlay:rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
@@ -30,49 +27,24 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 
 /* grid */
 .grid{display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); margin-top:16px}
-.card{background:var(--panel); border:1px solid var(--bd); border-radius:var(--r); padding:8px; cursor:pointer}
-.card img{display:block; width:100%; border-radius:calc(var(--r) - 6px)}
-.card:focus{outline:2px solid var(--accent); outline-offset:2px} /* keyboard focus only; mouse focus suppressed via JS */
+.card{background:var(--panel); border:1px solid var(--bd); border-radius:var(--r); padding:8px; cursor:pointer; min-height:140px; display:flex; align-items:center; justify-content:center}
+.card img{display:block; width:100%; height:auto; border-radius:calc(var(--r) - 6px)}
+.card .ph{width:100%; aspect-ratio:1/1; border:1px dashed var(--bd); border-radius:calc(var(--r) - 6px); display:grid; place-items:center; color:var(--muted); font-size:12px; padding:8px; text-align:center}
 
-/* small status text */
-.counter{margin-top:8px; color:var(--muted)}
-.err{margin-top:8px; color:#ffd8d8}
-
-/* ===== CSS overlay modal (replaces <dialog>) ===== */
+/* modal */
 #modal[hidden]{ display:none; }
-#modal{
-  position: fixed; inset: 0; z-index: 9999;
-  display: grid; place-items: center;
-  background: var(--overlay);
-}
-
-/* modal inner layout */
+#modal{ position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: var(--overlay); }
 .modal-wrap{display:grid; grid-template-columns:1fr 360px; max-height:85vh}
 .modal-media{background:var(--modal-media-bg); display:flex; align-items:center; justify-content:center; padding:16px}
 .modal-media img{max-width:100%; max-height:calc(85vh - 32px); border-radius:12px}
 .modal-info{background:var(--modal-bg); border-left:1px solid var(--bd); padding:16px; display:flex; flex-direction:column; gap:10px; position:relative}
-
-.modal-title{
-  font-weight:1000;
-  font-size: clamp(1.25rem, 2.5vw + .25rem, 2rem);
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-
-.navbtns{display:flex; gap:8px}
+.modal-title{font-weight:700; font-size:clamp(1.25rem,2.5vw + .25rem,2rem); line-height:1.2; margin-bottom:6px}
+.navbtns{display:flex; gap:8px; position:absolute; right:12px; bottom:12px; margin:0}
 .navbtns button{padding:8px 10px; border:1px solid var(--control-bd); border-radius:10px; background:var(--control-bg); color:var(--control-fg); cursor:pointer}
 .navbtns button[disabled]{opacity:.45; pointer-events:none; cursor:not-allowed}
 .close{position:absolute; top:8px; right:8px; background:transparent; border:none; color:var(--fg); font-size:20px; cursor:pointer}
-
-/* anchor nav to lower-right of the details pane */
-.modal-info{ position: relative; padding-bottom: 56px; }
-.navbtns{
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  margin: 0;
-}
-.counter { display: none !important; }
+.counter{display:none}
+.err{margin-top:8px; color:#ffd8d8}
 
 @media (max-width:720px){
   .modal-wrap{grid-template-columns:1fr}
@@ -80,11 +52,13 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
   .modal-media img{max-height:60vh}
 }
 
-/* a11y helper */
+/* a11y */
 .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
-
-/* lock scroll on open (applied to <html>) */
 html.is-modal-open { overflow: hidden; }
+
+/* debug panel (can be hidden) */
+#dbg{position:fixed; bottom:8px; left:8px; background:#0008; color:#fff; padding:6px 8px; border-radius:8px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; z-index:99999}
+#dbg.hidden{display:none}
 </style>
 </head>
 <body>
@@ -109,7 +83,6 @@ html.is-modal-open { overflow: hidden; }
     <div id="grid" class="grid" aria-live="polite"></div>
   </div>
 
-  <!-- CSS overlay modal (no <dialog>) -->
   <div id="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
     <div class="modal-wrap">
       <div class="modal-media">
@@ -126,6 +99,8 @@ html.is-modal-open { overflow: hidden; }
       </div>
     </div>
   </div>
+
+  <div id="dbg" class="hidden"></div>
 
 <script>
 const DATA_URL = 'badges.json';
@@ -144,11 +119,22 @@ const mclose = document.getElementById('mclose');
 const prevBtn= document.getElementById('prevBtn');
 const nextBtn= document.getElementById('nextBtn');
 
+const dbgEl  = document.getElementById('dbg');
+function dbg(msg){
+  // toggle visibility by removing 'hidden' if needed
+  // dbgEl.classList.remove('hidden');
+  dbgEl.textContent = String(msg).slice(0, 500);
+}
+
 let BADGES = [];
 let CURRENT = [];
 let currentIndex = -1;
 
 const norm = s => (s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+
+function imageFrom(b){
+  return b.imageUrl ?? b.imageURL ?? b.url ?? b.image ?? b.src ?? '';
+}
 
 function apply(){
   const term = norm(q.value);
@@ -183,15 +169,28 @@ function render(list){
 
     card.addEventListener('click', ()=> openModalByIndex(i));
 
+    const src = imageFrom(b);
     const img = document.createElement('img');
     img.loading = 'lazy';
     img.alt = b.name;
-    img.src = b.imageUrl;
+    img.src = src;
+    img.referrerPolicy = 'no-referrer';
+    img.onerror = ()=>{
+      // Show placeholder instead of a broken image
+      img.remove();
+      const ph = document.createElement('div');
+      ph.className = 'ph';
+      ph.textContent = 'Image failed to load';
+      card.appendChild(ph);
+    };
+
     card.appendChild(img);
     frag.appendChild(card);
   });
   grid.appendChild(frag);
-  // if (count) count.textContent = list.length ? \`\${list.length} result\${list.length===1?'':'s'}\` : 'No results';
+
+  // debug first item
+  if (list[0]) dbg('First image src: ' + imageFrom(list[0]));
 }
 
 /* ===== Overlay modal helpers ===== */
@@ -213,28 +212,27 @@ function openModalByIndex(i){
   if (i<0 || i>=CURRENT.length) return;
   currentIndex = i;
   const b = CURRENT[i];
-  mimg.src = b.imageUrl;
+  const src = imageFrom(b);
+  mimg.src = src;
   mimg.alt = b.name || '';
   mtitle.textContent = b.name || '';
   mcrit.textContent = b.criteria || '';
 
-  modalOpen();                 // open overlay
+  modalOpen();
   updateNavButtons();
   preload(i-1); preload(i+1);
 }
 function preload(i){
   if (i<0 || i>=CURRENT.length) return;
-  const im = new Image(); im.src = CURRENT[i].imageUrl;
+  const im = new Image(); im.referrerPolicy = 'no-referrer'; im.src = imageFrom(CURRENT[i]);
 }
 function closeModal(){ modalClose(); currentIndex = -1; }
 
 // Prevent focus-jump on control buttons as well
-mclose.addEventListener('mousedown', e => e.preventDefault());
-prevBtn.addEventListener('mousedown', e => e.preventDefault());
-nextBtn.addEventListener('mousedown', e => e.preventDefault());
-mclose.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
-prevBtn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
-nextBtn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
+;[mclose, prevBtn, nextBtn].forEach(btn=>{
+  btn.addEventListener('mousedown', e => e.preventDefault());
+  btn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
+});
 
 mclose.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
@@ -260,16 +258,16 @@ fetch(DATA_URL)
   .then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
   .then(data => {
     BADGES = (Array.isArray(data) ? data : []).map(b => ({
-      id: b.id ?? '',
+      id: b.id ?? b.slug ?? '',
       name: b.name ?? 'Untitled',
-      imageUrl: b.imageUrl ?? '',
+      imageUrl: imageFrom(b),
       criteria: b.criteria ?? ''
     }));
     apply();
   })
   .catch(e=>{
     console.error('badges.json load failed:', e);
-    if (errEl) errEl.textContent = \`Could not load badges.json (\${e.message}).\`;
+    if (errEl) errEl.textContent = `Could not load badges.json (${e.message}).`;
   });
 </script>
 </body>
