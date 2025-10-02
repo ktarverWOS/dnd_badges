@@ -44,7 +44,14 @@ dialog::backdrop{background:var(--overlay)}
 .modal-media{background:var(--modal-media-bg); display:flex; align-items:center; justify-content:center; padding:16px}
 .modal-media img{max-width:100%; max-height:calc(85vh - 32px); border-radius:12px}
 .modal-info{background:var(--modal-bg); border-left:1px solid var(--bd); padding:16px; display:flex; flex-direction:column; gap:10px; position:relative}
-.modal-title{font-weight:1000}
+
+.modal-title{
+  font-weight:1000;
+  font-size: clamp(1.25rem, 2.5vw + .25rem, 2rem); /* ⬅ bigger title */
+  line-height: 1.2; /* optional: tighter spacing */
+  margin-bottom: 6px; /* optional: a little breathing room */
+}
+
 .navbtns{display:flex; gap:8px}
 .navbtns button{padding:8px 10px; border:1px solid var(--control-bd); border-radius:10px; background:var(--control-bg); color:var(--control-fg); cursor:pointer}
 .navbtns button[disabled]{opacity:.45; pointer-events:none; cursor:not-allowed}
@@ -136,13 +143,21 @@ const norm = s => (s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036
 function apply(){
   const term = norm(q.value);
   const dir  = sortEl.value;
-  CURRENT = BADGES.filter(b => !term || norm(b.name).includes(term));
+
+  CURRENT = BADGES.filter(b => {
+    if (!term) return true;
+    return norm(b.name).includes(term)
+        || norm(b.criteria ?? '').includes(term);
+  });
+
   CURRENT.sort((a,b)=>{
     const an = norm(a.name), bn = norm(b.name);
     return dir === 'name-desc' ? bn.localeCompare(an) : an.localeCompare(bn);
   });
+
   render(CURRENT);
 }
+
 
 function render(list){
   grid.innerHTML = '';
