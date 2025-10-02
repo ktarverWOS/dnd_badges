@@ -206,6 +206,25 @@ function updateNavButtons(){
   prevBtn.disabled = currentIndex<=0;
   nextBtn.disabled = currentIndex>=CURRENT.length-1;
 }
+
+function openModalByIndex(i){
+  if (i<0 || i>=CURRENT.length) return;
+  currentIndex = i;
+  const b = CURRENT[i];
+  mimg.src = b.imageUrl; mimg.alt = b.name;
+  mtitle.textContent = b.name || '';
+  mcrit.textContent = b.criteria || '';
+
+  if (!modal.open){
+    modal.showModal();
+    // prevent focusing the dialog from scrolling the page
+    requestAnimationFrame(()=> modal.focus({ preventScroll:true }));
+  }
+
+  updateNavButtons();
+  preload(i-1); preload(i+1);
+}
+
 document.addEventListener('keydown', e=>{
   if (!modal.open) return;
   if (e.key==='ArrowLeft' && currentIndex>0) openModalByIndex(currentIndex-1);
