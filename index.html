@@ -59,6 +59,31 @@ html.is-modal-open { overflow: hidden; }
 /* debug panel (can be hidden) */
 #dbg{position:fixed; bottom:8px; left:8px; background:#0008; color:#fff; padding:6px 8px; border-radius:8px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; z-index:99999}
 #dbg.hidden{display:none}
+
+/* Stop centering across a giant iframe; anchor modal near the top */
+#modal{ 
+  /* was: display:grid; place-items:center; */
+  display:block;                   /* kill grid centering */
+}
+
+/* Pin the modal box to the top center of the viewport */
+.modal-wrap{
+  position: fixed;
+  top: clamp(12px, 6vh, 48px);     /* comfortable offset from top */
+  left: 50%;
+  transform: translateX(-50%);     /* center horizontally */
+  width: min(900px, 92vw);
+  max-height: 88vh;                /* keep it on-screen */
+}
+
+/* Ensure image/content respects the new height cap */
+.modal-media img{
+  max-width: 100%;
+  max-height: calc(88vh - 32px);
+}
+
+
+
 </style>
 </head>
 <body>
