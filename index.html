@@ -97,6 +97,27 @@ html.is-modal-open { overflow: hidden; }
 .modal-info{ padding-bottom: 56px; }
 
 
+
+
+#modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--overlay);
+  display: block;         /* not grid; the box itself will be centered */
+}
+.modal-wrap{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: min(var(--modal-w,760px), 92vw);
+  max-height: var(--modal-max-h, 78vh);
+  display: grid;
+  grid-template-columns: 1fr var(--modal-info-w, 300px);
+}
+
+
 </style>
 </head>
 <body>
@@ -231,85 +252,10 @@ function render(list){
   if (list[0]) dbg('First image src: ' + imageFrom(list[0]));
 }
 
-/* ===== Overlay modal helpers ===== */
-function modalIsOpen(){ return !modal.hasAttribute('hidden'); }
-function modalOpen(){
-  if (!modalIsOpen()){
-    modal.removeAttribute('hidden');
-    document.documentElement.classList.add('is-modal-open'); // lock scroll
-  }
-}
-function modalClose(){
-  if (modalIsOpen()){
-    modal.setAttribute('hidden','');
-    document.documentElement.classList.remove('is-modal-open');
-  }
-}
-
-function openModalByIndex(i){
-  if (i<0 || i>=CURRENT.length) return;
-  currentIndex = i;
-  const b = CURRENT[i];
-  const src = imageFrom(b);
-  mimg.src = src;
-  mimg.alt = b.name || '';
-  mtitle.textContent = b.name || '';
-  mcrit.textContent = b.criteria || '';
-
-  modalOpen();
-  updateNavButtons();
-  preload(i-1); preload(i+1);
-}
-function preload(i){
-  if (i<0 || i>=CURRENT.length) return;
-  const im = new Image(); im.referrerPolicy = 'no-referrer'; im.src = imageFrom(CURRENT[i]);
-}
-function closeModal(){ modalClose(); currentIndex = -1; }
-
-// Prevent focus-jump on control buttons as well
-;[mclose, prevBtn, nextBtn].forEach(btn=>{
-  btn.addEventListener('mousedown', e => e.preventDefault());
-  btn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
-});
-
-mclose.addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-prevBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex>0) openModalByIndex(currentIndex-1); });
-nextBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1); });
-function updateNavButtons(){
-  prevBtn.disabled = currentIndex<=0;
-  nextBtn.disabled = currentIndex>=CURRENT.length-1;
-}
-
-document.addEventListener('keydown', e=>{
-  if (!modalIsOpen()) return;
-  if (e.key==='ArrowLeft' && currentIndex>0) openModalByIndex(currentIndex-1);
-  else if (e.key==='ArrowRight' && currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1);
-  else if (e.key==='Escape') closeModal();
-});
-
-q.addEventListener('input', apply);
-sortEl.addEventListener('change', apply);
-
-fetch(DATA_URL)
-  .then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-  .then(data => {
-    BADGES = (Array.isArray(data) ? data : []).map(b => ({
-      id: b.id ?? b.slug ?? '',
-      name: b.name ?? 'Untitled',
-      imageUrl: imageFrom(b),
-      criteria: b.criteria ?? ''
-    }));
-    apply();
-  })
-  .catch(e=>{
-    console.error('badges.json load failed:', e);
-    if (errEl) errEl.textContent = `Could not load badges.json (${e.message}).`;
-  });
-
-  // --- Fixed-position fallback for hostile embeds (Google Sites preview, etc.)
+/* ===== Overlay modal helpers (with Google Sites fixed-position fallback) ===== */
 const modalWrap = document.querySelector('#modal .modal-wrap');
+
+function modalIsOpen(){ return !modal.hasAttribute('hidden'); }
 
 function supportsFixedPosition(){
   const t = document.createElement('div');
@@ -320,59 +266,62 @@ function supportsFixedPosition(){
   return ok;
 }
 
+let emulate = false;
 function emulateFixedTick(){
-  // Size/position the overlay to the visible viewport
   const y = window.scrollY || document.documentElement.scrollTop || 0;
   const h = window.innerHeight;
+
+  // size/position the overlay to the visible viewport
   modal.style.position = 'absolute';
   modal.style.top = y + 'px';
   modal.style.left = '0';
   modal.style.height = h + 'px';
   modal.style.width  = '100%';
 
-  // Center the modal box within the visible viewport
-  const mw = modalWrap;
-  mw.style.position = 'absolute';
-  const mh = Math.min(mw.offsetHeight || 0, h * 0.9);
+  // center the modal box within the visible viewport
+  const mh = Math.min(modalWrap.offsetHeight || 0, h * 0.9);
   const top = y + Math.max(12, (h - mh)/2);
-  mw.style.top  = Math.round(top) + 'px';
-  mw.style.left = '50%';
-  mw.style.transform = 'translateX(-50%)';
+  modalWrap.style.position = 'absolute';
+  modalWrap.style.top = Math.round(top) + 'px';
+  modalWrap.style.left = '50%';
+  modalWrap.style.transform = 'translateX(-50%)';
 }
 
-let _emulate = false;
 function enableEmulation(){
-  if (_emulate) return;
-  _emulate = true;
+  if (emulate) return;
+  emulate = true;
   emulateFixedTick();
-  window.addEventListener('scroll', emulateFixedTick, { passive:true });
+  window.addEventListener('scroll', emulateFixedTick, { passive: true });
   window.addEventListener('resize', emulateFixedTick);
 }
 
 function disableEmulation(){
-  if (!_emulate) return;
-  _emulate = false;
+  if (!emulate) return;
+  emulate = false;
   window.removeEventListener('scroll', emulateFixedTick);
   window.removeEventListener('resize', emulateFixedTick);
-  // clean inline styles
-  ['position','top','left','height','width'].forEach(k=> modal.style[k]='');
-  ['position','top','left','transform'].forEach(k=> modalWrap.style[k]='');
+  // cleanup inline styles
+  ['position','top','left','height','width'].forEach(k => modal.style[k] = '');
+  ['position','top','left','transform'].forEach(k => modalWrap.style[k] = '');
 }
 
-// Hook it into your existing open/close
-const _modalOpen = modalOpen;
-modalOpen = function(){
-  _modalOpen();
-  if (!supportsFixedPosition()) enableEmulation();
-  // lock iframe scroll (still ok with emulation)
-  document.documentElement.classList.add('is-modal-open');
-};
-const _modalClose = modalClose;
-modalClose = function(){
-  _modalClose();
-  disableEmulation();
-  document.documentElement.classList.remove('is-modal-open');
-};
+function modalOpen(){
+  if (!modalIsOpen()){
+    modal.removeAttribute('hidden');
+    document.documentElement.classList.add('is-modal-open');
+    if (!supportsFixedPosition()) enableEmulation();
+  }
+}
+
+function modalClose(){
+  if (modalIsOpen()){
+    modal.setAttribute('hidden','');
+    document.documentElement.classList.remove('is-modal-open');
+    disableEmulation();
+  }
+}
+
+
 
 </script>
 </body>
