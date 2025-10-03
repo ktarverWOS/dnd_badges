@@ -60,28 +60,41 @@ html.is-modal-open { overflow: hidden; }
 #dbg{position:fixed; bottom:8px; left:8px; background:#0008; color:#fff; padding:6px 8px; border-radius:8px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; z-index:99999}
 #dbg.hidden{display:none}
 
-/* Stop centering across a giant iframe; anchor modal near the top */
-#modal{ 
-  /* was: display:grid; place-items:center; */
-  display:block;                   /* kill grid centering */
-}
-
-/* Pin the modal box to the top center of the viewport */
-.modal-wrap{
+/* The overlay covers the viewport and doesn’t scroll */
+#modal{
   position: fixed;
-  top: clamp(12px, 6vh, 48px);     /* comfortable offset from top */
+  inset: 0;
+  z-index: 9999;
+  background: var(--overlay);
+  /* don’t rely on grid centering; we’ll center the box itself */
+  display: block;
+  overscroll-behavior: contain;
+}
+
+/* Center the modal box in the current viewport */
+:root{
+  /* easy knobs you can tweak */
+  --modal-w:      760px;   /* overall modal width */
+  --modal-info-w: 300px;   /* right pane width */
+  --modal-max-h:  78vh;    /* height cap */
+}
+
+.modal-wrap{
+  position: fixed;                 /* <-- anchored to viewport */
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);     /* center horizontally */
-  width: min(900px, 92vw);
-  max-height: 88vh;                /* keep it on-screen */
+  transform: translate(-50%, -50%);/* centered in current view */
+  width: min(var(--modal-w), 92vw);
+  max-height: var(--modal-max-h);
+  display: grid;
+  grid-template-columns: 1fr var(--modal-info-w);
 }
 
-/* Ensure image/content respects the new height cap */
-.modal-media img{
-  max-width: 100%;
-  max-height: calc(88vh - 32px);
-}
+/* keep content inside the height cap */
+.modal-media img{ max-height: calc(var(--modal-max-h) - 32px); }
 
+/* make sure the right pane has room for buttons if you anchor them */
+.modal-info{ padding-bottom: 56px; }
 
 
 </style>
