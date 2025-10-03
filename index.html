@@ -307,6 +307,73 @@ fetch(DATA_URL)
     console.error('badges.json load failed:', e);
     if (errEl) errEl.textContent = `Could not load badges.json (${e.message}).`;
   });
+
+  // --- Fixed-position fallback for hostile embeds (Google Sites preview, etc.)
+const modalWrap = document.querySelector('#modal .modal-wrap');
+
+function supportsFixedPosition(){
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;top:10px;left:0';
+  document.body.appendChild(t);
+  const ok = t.getBoundingClientRect().top === 10;
+  t.remove();
+  return ok;
+}
+
+function emulateFixedTick(){
+  // Size/position the overlay to the visible viewport
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+  const h = window.innerHeight;
+  modal.style.position = 'absolute';
+  modal.style.top = y + 'px';
+  modal.style.left = '0';
+  modal.style.height = h + 'px';
+  modal.style.width  = '100%';
+
+  // Center the modal box within the visible viewport
+  const mw = modalWrap;
+  mw.style.position = 'absolute';
+  const mh = Math.min(mw.offsetHeight || 0, h * 0.9);
+  const top = y + Math.max(12, (h - mh)/2);
+  mw.style.top  = Math.round(top) + 'px';
+  mw.style.left = '50%';
+  mw.style.transform = 'translateX(-50%)';
+}
+
+let _emulate = false;
+function enableEmulation(){
+  if (_emulate) return;
+  _emulate = true;
+  emulateFixedTick();
+  window.addEventListener('scroll', emulateFixedTick, { passive:true });
+  window.addEventListener('resize', emulateFixedTick);
+}
+
+function disableEmulation(){
+  if (!_emulate) return;
+  _emulate = false;
+  window.removeEventListener('scroll', emulateFixedTick);
+  window.removeEventListener('resize', emulateFixedTick);
+  // clean inline styles
+  ['position','top','left','height','width'].forEach(k=> modal.style[k]='');
+  ['position','top','left','transform'].forEach(k=> modalWrap.style[k]='');
+}
+
+// Hook it into your existing open/close
+const _modalOpen = modalOpen;
+modalOpen = function(){
+  _modalOpen();
+  if (!supportsFixedPosition()) enableEmulation();
+  // lock iframe scroll (still ok with emulation)
+  document.documentElement.classList.add('is-modal-open');
+};
+const _modalClose = modalClose;
+modalClose = function(){
+  _modalClose();
+  disableEmulation();
+  document.documentElement.classList.remove('is-modal-open');
+};
+
 </script>
 </body>
 </html>
