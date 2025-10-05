@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Badge Gallery (Overlay Modal + Anti-Jump + Compat)</title>
+<title>Badge Gallery — Fixed</title>
 <style>
 :root{
   --bg:#02104f; --fg:#f2f3f5; --muted:#cdd4ff;
@@ -11,12 +11,13 @@
   --control-bg:#0d155c; --control-bg-hover:#111a70;
   --control-bd:#2a347a; --control-fg:#f2f3f5; --accent:#7c9eff;
   --modal-bg:#02104f; --modal-media-bg:#030d3b; --overlay:rgba(0,0,0,.6);
+  --modal-w:760px; --modal-info-w:300px; --modal-max-h:88vh;
 }
 *{box-sizing:border-box}
 body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--fg)}
 .wrap{max-width:1100px; margin:0 auto; padding:16px}
 
-/* top bar */
+/* toolbar */
 .toolbar{display:flex; align-items:center; gap:10px}
 .search{flex:1 1 100%; min-width:0}
 .search input{width:100%; padding:12px 14px; border:1px solid var(--control-bd); border-radius:12px; background:var(--control-bg); color:var(--control-fg); outline:none}
@@ -31,140 +32,66 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 .card img{display:block; width:100%; height:auto; border-radius:calc(var(--r) - 6px)}
 .card .ph{width:100%; aspect-ratio:1/1; border:1px dashed var(--bd); border-radius:calc(var(--r) - 6px); display:grid; place-items:center; color:var(--muted); font-size:12px; padding:8px; text-align:center}
 
+.counter{display:none}
+.err{margin-top:8px; color:#ffd8d8}
 
-/* ===== Modal (Google Sites–safe, JS centers within viewport) ===== */
+/* ===== Modal (single, clean set — JS positions to visible viewport) ===== */
 #modal[hidden]{ display:none; }
 
-/* overlay — JS will position it each time */
+/* overlay — JS sets top/height so it covers only the visible window inside iframe */
 #modal{
-  position: absolute;   /* JS sets top + height */
-  left: 0;
-  width: 100%;
-  background: var(--overlay);
-  display: block;
-  z-index: 9999;
+  position:absolute;
+  left:0;
+  width:100%;
+  background:var(--overlay);
+  display:block;
+  z-index:9999;
 }
 
-/* box — JS sets top/left/transform to center within visible window */
+/* modal box — JS centers this within the visible window */
 #modal .modal-wrap{
-  position: absolute;
-  width: min(var(--modal-w, 760px), 92vw);
-  max-height: var(--modal-max-h, 88vh);
-  display: grid;
-  grid-template-columns: 1fr var(--modal-info-w, 300px);
-  border-radius: 16px;
-  overflow: hidden;
+  position:absolute;
+  width:min(var(--modal-w), 92vw);
+  max-height:var(--modal-max-h);
+  display:grid;
+  grid-template-columns:1fr var(--modal-info-w);
+  border-radius:16px;
+  overflow:hidden;
 }
 
-/* contents */
+/* modal contents */
 .modal-media{
-  background: var(--modal-media-bg);
-  display: flex; align-items: center; justify-content: center;
-  padding: 16px;
+  background:var(--modal-media-bg);
+  display:flex; align-items:center; justify-content:center;
+  padding:16px;
 }
 .modal-media img{
-  max-width: 100%;
-  max-height: calc(var(--modal-max-h, 88vh) - 32px);
-  border-radius: 12px;
+  max-width:100%;
+  max-height:calc(var(--modal-max-h) - 32px);
+  border-radius:12px;
+  object-fit:contain;
 }
 .modal-info{
-  background: var(--modal-bg);
-  border-left: 1px solid var(--bd);
-  padding: 12px;
-  position: relative;
-  padding-bottom: 56px; /* space for Prev/Next row if pinned */
+  background:var(--modal-bg);
+  border-left:1px solid var(--bd);
+  padding:12px;
+  position:relative;
+  padding-bottom:56px; /* room for nav buttons when anchored bottom-right */
 }
-.navbtns{
-  position: absolute; right: 12px; bottom: 12px;
-  display: flex; gap: 8px;
-}
-.close{
-  position: absolute; top: 8px; right: 8px;
-  background: transparent; border: none; color: var(--fg);
-  font-size: 20px; cursor: pointer;
-}
+.modal-title{font-weight:700; font-size:clamp(1.1rem, 2vw + .2rem, 1.8rem); line-height:1.2; margin-bottom:6px}
+.navbtns{position:absolute; right:12px; bottom:12px; display:flex; gap:8px}
+.navbtns button{padding:8px 10px; border:1px solid var(--control-bd); border-radius:10px; background:var(--control-bg); color:var(--control-fg); cursor:pointer}
+.navbtns button[disabled]{opacity:.45; pointer-events:none}
+.close{position:absolute; top:8px; right:8px; background:transparent; border:none; color:var(--fg); font-size:20px; cursor:pointer}
 
 @media (max-width:720px){
-  #modal .modal-wrap{ grid-template-columns: 1fr; }
+  #modal .modal-wrap{ grid-template-columns:1fr; }
   .modal-info{ border-left:none; border-top:1px solid var(--bd); }
-}
-
-
-@media (max-width:720px){
-    .modal-info{border-left:none; border-top:1px solid var(--bd)}
-  .modal-media img{max-height:60vh}
 }
 
 /* a11y */
 .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
-html.is-modal-open { overflow: hidden; }
-
-/* debug panel (can be hidden) */
-#dbg{position:fixed; bottom:8px; left:8px; background:#0008; color:#fff; padding:6px 8px; border-radius:8px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; z-index:99999}
-#dbg.hidden{display:none}
-
-
-
-
-/* Center the modal box in the current viewport */
-:root{
-  /* easy knobs you can tweak */
-  --modal-w:      760px;   /* overall modal width */
-  --modal-info-w: 300px;   /* right pane width */
-  --modal-max-h:  78vh;    /* height cap */
-}
-
-
-/* keep content inside the height cap */
-.modal-media img{ max-height: calc(var(--modal-max-h) - 32px); }
-
-/* make sure the right pane has room for buttons if you anchor them */
-.modal-info{ padding-bottom: 56px; }
-
-
-
-
-
-
-
-
-
-/* Size the modal box to the viewport, not the page height */
-:root{
-  --modal-w:      760px;   /* overall modal width (tweak me) */
-  --modal-info-w: 300px;   /* right pane width (tweak me) */
-  --modal-max-h:  88vh;    /* height cap relative to viewport */
-}
-@supports (height: 100dvh){
-  :root{ --modal-max-h: 88dvh; } /* more reliable on mobile */
-}
-
-
-/* Left side (image) fills but never exceeds viewport */
-.modal-media{
-  background: var(--modal-media-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-.modal-media img{
-  max-width: 100%;
-  max-height: calc(var(--modal-max-h) - 32px);
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Right pane scrolls internally if content is long */
-.modal-info{
-  background: var(--modal-bg)
-}
-
-
-
-
-
+html.is-modal-open{ overflow:hidden; }
 </style>
 </head>
 <body>
@@ -206,11 +133,7 @@ html.is-modal-open { overflow: hidden; }
     </div>
   </div>
 
-  <div id="dbg" class="hidden"></div>
-
 <script>
-const DATA_URL = 'badges.json';
-
 const grid   = document.getElementById('grid');
 const q      = document.getElementById('q');
 const sortEl = document.getElementById('sort');
@@ -224,32 +147,23 @@ const mcrit  = document.getElementById('mcrit');
 const mclose = document.getElementById('mclose');
 const prevBtn= document.getElementById('prevBtn');
 const nextBtn= document.getElementById('nextBtn');
-
-const dbgEl  = document.getElementById('dbg');
-function dbg(msg){
-  // toggle visibility by removing 'hidden' if needed
-  // dbgEl.classList.remove('hidden');
-  dbgEl.textContent = String(msg).slice(0, 500);
-}
+const modalWrap = document.querySelector('#modal .modal-wrap');
 
 let BADGES = [];
 let CURRENT = [];
 let currentIndex = -1;
 
 const norm = s => (s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+const imageFrom = b => b.imageUrl ?? b.imageURL ?? b.url ?? b.image ?? b.src ?? '';
 
-function imageFrom(b){
-  return b.imageUrl ?? b.imageURL ?? b.url ?? b.image ?? b.src ?? '';
-}
-
+/* render + filter */
 function apply(){
   const term = norm(q.value);
   const dir  = sortEl.value;
 
   CURRENT = BADGES.filter(b => {
     if (!term) return true;
-    return norm(b.name).includes(term)
-        || norm(b.criteria ?? '').includes(term);
+    return norm(b.name).includes(term) || norm(b.criteria ?? '').includes(term);
   });
 
   CURRENT.sort((a,b)=>{
@@ -268,23 +182,17 @@ function render(list){
     card.className = 'card';
     card.type = 'button';
     card.setAttribute('aria-label', b.name);
-
-    // Anti-jump: prevent the default mouse/touch focus behavior
+    // anti-jump focus suppression for mouse/touch
     card.addEventListener('mousedown', e => e.preventDefault());
-    card.addEventListener('touchstart', e => { e.preventDefault(); }, { passive: false });
-
+    card.addEventListener('touchstart', e => { e.preventDefault(); }, { passive:false });
     card.addEventListener('click', ()=> openModalByIndex(i));
 
-    const src = imageFrom(b);
     const img = document.createElement('img');
     img.loading = 'lazy';
     img.alt = b.name;
-    img.src = src;
+    img.src = imageFrom(b);
     img.referrerPolicy = 'no-referrer';
     img.onerror = ()=>{
-
-
-      // Show placeholder instead of a broken image
       img.remove();
       const ph = document.createElement('div');
       ph.className = 'ph';
@@ -296,122 +204,129 @@ function render(list){
     frag.appendChild(card);
   });
   grid.appendChild(frag);
-
-  // debug first item
-  if (list[0]) dbg('First image src: ' + imageFrom(list[0]));
 }
 
-/* ===== Overlay modal helpers (with Google Sites fixed-position fallback) ===== */
-const modalWrap = document.querySelector('#modal .modal-wrap');
-
-function modalIsOpen(){ return !modal.hasAttribute('hidden'); }
-
-function supportsFixedPosition(){
-  const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;top:10px;left:0';
-  document.body.appendChild(t);
-  const ok = t.getBoundingClientRect().top === 10;
-  t.remove();
-  return ok;
+/* modal logic */
+function updateNavButtons(){
+  prevBtn.disabled = currentIndex<=0;
+  nextBtn.disabled = currentIndex>=CURRENT.length-1;
 }
+function preload(i){
+  if (i<0 || i>=CURRENT.length) return;
+  const im = new Image(); im.referrerPolicy = 'no-referrer'; im.src = imageFrom(CURRENT[i]);
+}
+function openModalByIndex(i){
+  if (i<0 || i>=CURRENT.length) return;
+  currentIndex = i;
+  const b = CURRENT[i];
+  mimg.src = imageFrom(b);
+  mimg.alt = b.name || '';
+  mtitle.textContent = b.name || '';
+  mcrit.textContent  = b.criteria || '';
+  modalOpen();
+  updateNavButtons();
+  preload(i-1); preload(i+1);
+}
+function closeModal(){ modalClose(); currentIndex = -1; }
 
-let emulate = false;
-function emulateFixedTick(){
+/* Google Sites-safe positioning (centers within currently visible window) */
+function positionOverlay(){
   const y = window.scrollY || document.documentElement.scrollTop || 0;
-  const h = window.innerHeight;
+  const h = window.innerHeight || document.documentElement.clientHeight || 0;
 
-  // size/position the overlay to the visible viewport
-  modal.style.position = 'absolute';
   modal.style.top = y + 'px';
-  modal.style.left = '0';
   modal.style.height = h + 'px';
-  modal.style.width  = '100%';
 
-  // center the modal box within the visible viewport
-  const mh = Math.min(modalWrap.offsetHeight || 0, h * 0.9);
-  const top = y + Math.max(12, (h - mh)/2);
-  modalWrap.style.position = 'absolute';
+  const boxH = Math.min(modalWrap.offsetHeight || 0, Math.max(240, h * 0.92));
+  const top  = y + Math.max(12, (h - boxH) / 2);
   modalWrap.style.top = Math.round(top) + 'px';
   modalWrap.style.left = '50%';
   modalWrap.style.transform = 'translateX(-50%)';
 }
 
-function enableEmulation(){
-  if (emulate) return;
-  emulate = true;
-  emulateFixedTick();
-  window.addEventListener('scroll', emulateFixedTick, { passive: true });
-  window.addEventListener('resize', emulateFixedTick);
+let overlayBound = false;
+function bindOverlayPositioning(){
+  if (overlayBound) return;
+  overlayBound = true;
+  positionOverlay();
+  window.addEventListener('scroll', positionOverlay, { passive:true });
+  window.addEventListener('resize', positionOverlay);
+  setTimeout(positionOverlay, 50);
+  setTimeout(positionOverlay, 200);
+}
+function unbindOverlayPositioning(){
+  if (!overlayBound) return;
+  overlayBound = false;
+  window.removeEventListener('scroll', positionOverlay);
+  window.removeEventListener('resize', positionOverlay);
+  ['top','height'].forEach(k => modal.style[k] = '');
+  ['top','left','transform'].forEach(k => modalWrap.style[k] = '');
 }
 
-function disableEmulation(){
-  if (!emulate) return;
-  emulate = false;
-  window.removeEventListener('scroll', emulateFixedTick);
-  window.removeEventListener('resize', emulateFixedTick);
-  // cleanup inline styles
-  ['position','top','left','height','width'].forEach(k => modal.style[k] = '');
-  ['position','top','left','transform'].forEach(k => modalWrap.style[k] = '');
-}
-
+function modalIsOpen(){ return !modal.hasAttribute('hidden'); }
 function modalOpen(){
   if (!modalIsOpen()){
     modal.removeAttribute('hidden');
     document.documentElement.classList.add('is-modal-open');
-    if (!supportsFixedPosition()) enableEmulation();
+    bindOverlayPositioning();
   }
 }
-
 function modalClose(){
   if (modalIsOpen()){
     modal.setAttribute('hidden','');
     document.documentElement.classList.remove('is-modal-open');
-    disableEmulation();
+    unbindOverlayPositioning();
   }
 }
 
-(async () => {
-  const base = location.pathname.replace(/[^/]+$/, ''); // '/dnd_badges/' when hosted
-  const tried = [
-    'badges.json',
-    base + 'badges.json' // fallback if index.html is in a subfolder
-  ];
+/* event listeners */
+q.addEventListener('input', apply);
+sortEl.addEventListener('change', apply);
+mclose.addEventListener('mousedown', e => e.preventDefault());
+prevBtn.addEventListener('mousedown', e => e.preventDefault());
+nextBtn.addEventListener('mousedown', e => e.preventDefault());
+mclose.addEventListener('touchstart', e => { e.preventDefault(); }, { passive:false });
+prevBtn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive:false });
+nextBtn.addEventListener('touchstart', e => { e.preventDefault(); }, { passive:false });
+mclose.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+prevBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex>0) openModalByIndex(currentIndex-1); });
+nextBtn.addEventListener('click', e => { e.preventDefault(); if (currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1); });
+document.addEventListener('keydown', e=>{
+  if (!modalIsOpen()) return;
+  if (e.key==='ArrowLeft' && currentIndex>0) openModalByIndex(currentIndex-1);
+  else if (e.key==='ArrowRight' && currentIndex<CURRENT.length-1) openModalByIndex(currentIndex+1);
+  else if (e.key==='Escape') closeModal();
+});
 
+/* robust loader for GH Pages under /dnd_badges/ */
+(async () => {
+  const base = location.pathname.replace(/[^/]+$/, '');
+  const tried = ['badges.json', base + 'badges.json'];
   let data = null, lastErr = null;
   for (const url of tried) {
     try {
       const r = await fetch(url, { cache: 'no-store' });
       if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
       data = await r.json();
-      console.log('Loaded badges from', url, 'count =', Array.isArray(data) ? data.length : 0);
       break;
-    } catch (e) {
-      lastErr = e;
-      console.warn('Tried', url, '->', e.message);
-    }
+    } catch (e) { lastErr = e; }
   }
-
   if (!Array.isArray(data) || data.length === 0) {
     const msg = lastErr
-      ? `Could not load badges.json (${lastErr.message}).` 
+      ? `Could not load badges.json (${lastErr.message}).`
       : `Loaded 0 items from badges.json — is it empty or misnamed?`;
     if (errEl) errEl.textContent = msg;
     return;
   }
-
   BADGES = data.map(b => ({
     id: b.id ?? b.slug ?? '',
     name: b.name ?? 'Untitled',
-    imageUrl: (b.imageUrl ?? b.imageURL ?? b.url ?? b.image ?? b.src ?? ''),
+    imageUrl: imageFrom(b),
     criteria: b.criteria ?? ''
   }));
-
-  // Optional: show count while debugging
-  if (errEl) errEl.textContent = `Loaded ${BADGES.length} badges.`;
   apply();
 })();
-
-
 </script>
 </body>
 </html>
