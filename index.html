@@ -31,24 +31,67 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 .card img{display:block; width:100%; height:auto; border-radius:calc(var(--r) - 6px)}
 .card .ph{width:100%; aspect-ratio:1/1; border:1px dashed var(--bd); border-radius:calc(var(--r) - 6px); display:grid; place-items:center; color:var(--muted); font-size:12px; padding:8px; text-align:center}
 
-/* modal */
+
+/* ===== Modal (Google Sites–safe, JS centers within viewport) ===== */
 #modal[hidden]{ display:none; }
-#modal{ position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: var(--overlay); }
-.modal-wrap{display:grid; grid-template-columns:1fr 360px; max-height:85vh}
-.modal-media{background:var(--modal-media-bg); display:flex; align-items:center; justify-content:center; padding:16px}
-.modal-media img{max-width:100%; max-height:calc(85vh - 32px); border-radius:12px}
-.modal-info{background:var(--modal-bg); border-left:1px solid var(--bd); padding:16px; display:flex; flex-direction:column; gap:10px; position:relative}
-.modal-title{font-weight:700; font-size:clamp(1.25rem,2.5vw + .25rem,2rem); line-height:1.2; margin-bottom:6px}
-.navbtns{display:flex; gap:8px; position:absolute; right:12px; bottom:12px; margin:0}
-.navbtns button{padding:8px 10px; border:1px solid var(--control-bd); border-radius:10px; background:var(--control-bg); color:var(--control-fg); cursor:pointer}
-.navbtns button[disabled]{opacity:.45; pointer-events:none; cursor:not-allowed}
-.close{position:absolute; top:8px; right:8px; background:transparent; border:none; color:var(--fg); font-size:20px; cursor:pointer}
-.counter{display:none}
-.err{margin-top:8px; color:#ffd8d8}
+
+/* overlay — JS will position it each time */
+#modal{
+  position: absolute;   /* JS sets top + height */
+  left: 0;
+  width: 100%;
+  background: var(--overlay);
+  display: block;
+  z-index: 9999;
+}
+
+/* box — JS sets top/left/transform to center within visible window */
+#modal .modal-wrap{
+  position: absolute;
+  width: min(var(--modal-w, 760px), 92vw);
+  max-height: var(--modal-max-h, 88vh);
+  display: grid;
+  grid-template-columns: 1fr var(--modal-info-w, 300px);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* contents */
+.modal-media{
+  background: var(--modal-media-bg);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.modal-media img{
+  max-width: 100%;
+  max-height: calc(var(--modal-max-h, 88vh) - 32px);
+  border-radius: 12px;
+}
+.modal-info{
+  background: var(--modal-bg);
+  border-left: 1px solid var(--bd);
+  padding: 12px;
+  position: relative;
+  padding-bottom: 56px; /* space for Prev/Next row if pinned */
+}
+.navbtns{
+  position: absolute; right: 12px; bottom: 12px;
+  display: flex; gap: 8px;
+}
+.close{
+  position: absolute; top: 8px; right: 8px;
+  background: transparent; border: none; color: var(--fg);
+  font-size: 20px; cursor: pointer;
+}
 
 @media (max-width:720px){
-  .modal-wrap{grid-template-columns:1fr}
-  .modal-info{border-left:none; border-top:1px solid var(--bd)}
+  #modal .modal-wrap{ grid-template-columns: 1fr; }
+  .modal-info{ border-left:none; border-top:1px solid var(--bd); }
+}
+
+
+@media (max-width:720px){
+    .modal-info{border-left:none; border-top:1px solid var(--bd)}
   .modal-media img{max-height:60vh}
 }
 
@@ -60,16 +103,8 @@ html.is-modal-open { overflow: hidden; }
 #dbg{position:fixed; bottom:8px; left:8px; background:#0008; color:#fff; padding:6px 8px; border-radius:8px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; z-index:99999}
 #dbg.hidden{display:none}
 
-/* The overlay covers the viewport and doesn’t scroll */
-#modal{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--overlay);
-  /* don’t rely on grid centering; we’ll center the box itself */
-  display: block;
-  overscroll-behavior: contain;
-}
+
+
 
 /* Center the modal box in the current viewport */
 :root{
@@ -79,16 +114,6 @@ html.is-modal-open { overflow: hidden; }
   --modal-max-h:  78vh;    /* height cap */
 }
 
-.modal-wrap{
-  position: fixed;                 /* <-- anchored to viewport */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);/* centered in current view */
-  width: min(var(--modal-w), 92vw);
-  max-height: var(--modal-max-h);
-  display: grid;
-  grid-template-columns: 1fr var(--modal-info-w);
-}
 
 /* keep content inside the height cap */
 .modal-media img{ max-height: calc(var(--modal-max-h) - 32px); }
@@ -99,23 +124,45 @@ html.is-modal-open { overflow: hidden; }
 
 
 
-#modal{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--overlay);
-  display: block;         /* not grid; the box itself will be centered */
+
+
+
+
+
+/* Size the modal box to the viewport, not the page height */
+:root{
+  --modal-w:      760px;   /* overall modal width (tweak me) */
+  --modal-info-w: 300px;   /* right pane width (tweak me) */
+  --modal-max-h:  88vh;    /* height cap relative to viewport */
 }
-.modal-wrap{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: min(var(--modal-w,760px), 92vw);
-  max-height: var(--modal-max-h, 78vh);
-  display: grid;
-  grid-template-columns: 1fr var(--modal-info-w, 300px);
+@supports (height: 100dvh){
+  :root{ --modal-max-h: 88dvh; } /* more reliable on mobile */
 }
+
+
+/* Left side (image) fills but never exceeds viewport */
+.modal-media{
+  background: var(--modal-media-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-media img{
+  max-width: 100%;
+  max-height: calc(var(--modal-max-h) - 32px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right pane scrolls internally if content is long */
+.modal-info{
+  background: var(--modal-bg)
+}
+
+
+
 
 
 </style>
@@ -235,6 +282,8 @@ function render(list){
     img.src = src;
     img.referrerPolicy = 'no-referrer';
     img.onerror = ()=>{
+
+
       // Show placeholder instead of a broken image
       img.remove();
       const ph = document.createElement('div');
@@ -321,6 +370,46 @@ function modalClose(){
   }
 }
 
+(async () => {
+  const base = location.pathname.replace(/[^/]+$/, ''); // '/dnd_badges/' when hosted
+  const tried = [
+    'badges.json',
+    base + 'badges.json' // fallback if index.html is in a subfolder
+  ];
+
+  let data = null, lastErr = null;
+  for (const url of tried) {
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
+      data = await r.json();
+      console.log('Loaded badges from', url, 'count =', Array.isArray(data) ? data.length : 0);
+      break;
+    } catch (e) {
+      lastErr = e;
+      console.warn('Tried', url, '->', e.message);
+    }
+  }
+
+  if (!Array.isArray(data) || data.length === 0) {
+    const msg = lastErr
+      ? `Could not load badges.json (${lastErr.message}).` 
+      : `Loaded 0 items from badges.json — is it empty or misnamed?`;
+    if (errEl) errEl.textContent = msg;
+    return;
+  }
+
+  BADGES = data.map(b => ({
+    id: b.id ?? b.slug ?? '',
+    name: b.name ?? 'Untitled',
+    imageUrl: (b.imageUrl ?? b.imageURL ?? b.url ?? b.image ?? b.src ?? ''),
+    criteria: b.criteria ?? ''
+  }));
+
+  // Optional: show count while debugging
+  if (errEl) errEl.textContent = `Loaded ${BADGES.length} badges.`;
+  apply();
+})();
 
 
 </script>
