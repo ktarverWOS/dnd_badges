@@ -26,15 +26,14 @@ body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial
 .select{margin-left:auto; flex:0 0 auto}
 .select select{padding:10px 12px; border:1px solid var(--control-bd); border-radius:12px; background:var(--control-bg); color:var(--control-fg)}
 
+/* grid */
+.grid{display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); margin-top:16px}
+.card{background:var(--panel); border:1px solid var(--bd); border-radius:var(--r); padding:8px; cursor:pointer; min-height:140px; display:flex; align-items:center; justify-content:center}
+.card img{display:block; width:100%; height:auto; border-radius:calc(var(--r) - 6px)}
+.card .ph{width:100%; aspect-ratio:1/1; border:1px dashed var(--bd); border-radius:calc(var(--r) - 6px); display:grid; place-items:center; color:var(--muted); font-size:12px; padding:8px; text-align:center}
 
-
-<div class="counter"><small id="count"></small></div>
-<div id="err" class="err" role="status" aria-live="polite"></div>
-
-<nav id="pager-top" class="pager" aria-label="Badge navigation"></nav>
-<div id="grid" class="grid" aria-live="polite"></div>
-<nav id="pager-bottom" class="pager" aria-label="Badge navigation"></nav>
-
+.counter{display:none}
+.err{margin-top:8px; color:#ffd8d8}
 
 /* pagination controls */
 .pager{
@@ -126,11 +125,11 @@ html.is-modal-open{ overflow:hidden; }
         </select>
       </div>
     </div>
-
     <div class="counter"><small id="count"></small></div>
+    <div id="err" class="err" role="status" aria-live="polite"></div>
 
     <nav id="pager-top" class="pager" aria-label="Badge navigation"></nav>
-    <div id="err" class="err" role="status" aria-live="polite"></div>
+    <div id="grid" class="grid" aria-live="polite"></div>
     <nav id="pager-bottom" class="pager" aria-label="Badge navigation"></nav>
 
     
